@@ -34,6 +34,9 @@ nav ul li a {
     margin: 0 auto 40px auto;
 }
 
+#mision-paragraph {
+    text-align: justify;
+}
 
 /* Responsive media queries */
 @media(max-width: 700px) {
