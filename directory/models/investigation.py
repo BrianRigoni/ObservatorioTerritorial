@@ -9,3 +9,10 @@ class Investigation(models.Model):
     responsible = models.ForeignKey(Researcher, on_delete=models.DO_NOTHING, related_name='responsability')
     researchers = models.ManyToManyField(Researcher, related_name='investigation')
     publications = models.ForeignKey(Publication, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name = "Investigación"
+        verbose_name_plural = "Investigaciones"
+
+    def __str__(self):
+        return self.name
