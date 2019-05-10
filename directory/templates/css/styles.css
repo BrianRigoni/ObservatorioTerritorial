@@ -16,6 +16,31 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
+}
+.jumbotron {
+    margin-top: 60px;
+}
+
+.jumbotron h1 {
+    font-size: 50px;
+}
+
+.jumbotron hr {
+    width: 400px;
+    height: 7px;
+    background: rgba(255,82,82,1.0000000000);
+    margin: 0 auto 40px auto;
+}
+
+
+/* Responsive media queries */
+@media(max-width: 700px) {
+    .jumbotron h1 {
+        font-size: 30px;
+    }
+    .jumbotron hr {
+        height: 5px;
+    }
 }
