@@ -9,6 +9,10 @@ class Researcher(models.Model):
     email = models.EmailField(max_length=100, null=False, blank=False)
     institute = models.ForeignKey(Institute, null=False, on_delete=models.DO_NOTHING)
 
+    class Meta:
+        verbose_name = "Investigador"
+        verbose_name_plural = "Investigadores"
+
     def __str__(self):
         return f"{self.surnames}, {self.names}"
 
