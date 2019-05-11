@@ -25,9 +25,10 @@ nav ul li a {
 .jumbotron {
     background-image: url("../assets/beagle-channel-ushuaia.jpg");
     background-size: cover;
-    background-position-y: 28%;
+    background-position-y: -120px;
     text-align: left;
-    margin-top: 65px;
+    margin-top: 62px;
+    margin-bottom: 80px;
 }
 
 .jumbotron h1 {
@@ -39,8 +40,10 @@ nav ul li a {
 .jumbotron hr {
     width: 31%;
     height: 7px;
-    background: rgba(255,82,82,1.0000000000);
-    margin: 0 auto auto 0.3%;
+    background: rgb(220, 50, 50, 1);
+    margin: 0 auto auto 4px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 /* Mision  */
@@ -50,23 +53,41 @@ nav ul li a {
     border-bottom-right-radius: 50px; 
 }
 
+#image-tdf {
+    margin-left: 40px;
+}
 
-#mision-paragraph {
+#mision p{
     text-align: justify;
     font-family: "Open Sans";
     color: rgba(33,33,33,1);
     font-size: 18px;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+#mision h1 {
+    margin-left: 100px;
 }
 
 /* Contact */
-#contact-paragraph {
+#contact {
+    margin-top: 80px;
+}
+#contact p {
+    margin-left: 100px;
+    margin-top: 20px;
     text-align: left;
+}
+
+#contact h1 {
+    margin-left: 100px;
 }
 
 
 /* Footer styles */
 footer {
-    margin-top: 5px;
+    margin-top: 80px;
     width: 100%;
     height: 57px;
     background-color: #212529;
