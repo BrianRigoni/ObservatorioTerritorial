@@ -14,6 +14,10 @@ html, body {
 }
 
 /* Navigation bar styles*/
+#untdf-logotype {
+    width: 5rem;
+}
+
 nav ul li {
     margin-right: 10px;
 }
@@ -22,13 +26,25 @@ nav ul li a {
     font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
 }
-.jumbotron {
-    background-image: url("../assets/beagle-channel-ushuaia.jpg");
-    background-size: cover;
+
+.bg {
+    background: url("../assets/beagle-channel-ushuaia.jpg") no-repeat center;
     background-position-y: -120px;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 380px;
+    left: 0;
+    z-index: -1;
+}
+
+.jumbotron {
+    background: transparent;
     text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.500) 0.3em 0.3em 0.3em;
     margin-top: 62px;
     margin-bottom: 80px;
+    border-radius: 0px;
 }
 
 .jumbotron h1 {
@@ -40,7 +56,7 @@ nav ul li a {
 .jumbotron hr {
     width: 31%;
     height: 7px;
-    background: rgb(220, 50, 50, 1);
+    background: rgb(240, 40, 40, 0.900);
     margin: 0 auto auto 4px;
     border-bottom-left-radius: 50px;
     border-top-right-radius: 50px;
