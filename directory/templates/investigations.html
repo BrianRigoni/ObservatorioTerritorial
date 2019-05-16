@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title> Desarrollo Territorial - Investigaciones </title>
+</head>
+<body>
+    <h1> Investigaciones </h1>
+    {% if investigations %}
+    <ul>
+        {% for investigation in investigations %}
+        <li> {{ investigation.name }} </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h2>No hay investigaciones </h2>
+    {% endif %}
+
+</body>
+</html>
