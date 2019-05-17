@@ -40,9 +40,11 @@ nav ul li a {
 
 .jumbotron {
     background: transparent;
+    height: 298px;
+    width: 100%;
     text-align: left;
     text-shadow: rgba(0, 0, 0, 0.500) 0.3em 0.3em 0.3em;
-    margin-top: 62px;
+    margin-top: 65px;
     margin-bottom: 80px;
     border-radius: 0px;
 }
