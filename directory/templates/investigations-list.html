@@ -8,10 +8,10 @@
 <body>
 {% include 'navbar.html' %}
     <h1> Investigaciones </h1>
-    {% if investigations %}
+    {% if project %}
     <ul>
-        {% for investigation in investigations %}
-        <li> {{ investigation.name }} id: {{ investigation.id }} </li>
+        {% for project in projects %}
+        <li> {{ project.name }} id: {{ project.id }} </li>
         {% endfor %}
     </ul>
     {% else %}

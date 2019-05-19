@@ -1,6 +1,7 @@
 from django.db import models
 from .genre import Genre
 
+
 class Publication(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     date = models.CharField(max_length=100, null=False, blank=False)
