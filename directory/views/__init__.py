@@ -1,2 +1,3 @@
-from .index_view import *
-from .investigations_view import *
+from .index_view import HomeView
+from .investigations_listview import InvestigationsListView
+from .investigation_detailview import InvestigationDetailView
