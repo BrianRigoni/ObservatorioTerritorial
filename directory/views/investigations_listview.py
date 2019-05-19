@@ -10,7 +10,7 @@ class InvestigationsListView(ListView):
 
     def get(self, request, *args, **kwargs):
         projects = Project.objects.all()
-        context = {'projects': projects}
-        return render(request, self.template_name, context=context)
+        context_dict= {'projects': projects}
+        return render(request, self.template_name, context=context_dict)
 
 
