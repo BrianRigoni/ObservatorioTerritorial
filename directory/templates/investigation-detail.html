@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block title %} {{ project.name }} {% endblock title %}
 {% block content %}
-    {% include 'navbar.html' %}
-    {% if project %}
-        <h1>Investigacion: {{ project.name }}</h1>
-    {% endif %}
+    <h1> {{ project.name }} </h1>
+    
 {% endblock content %}
