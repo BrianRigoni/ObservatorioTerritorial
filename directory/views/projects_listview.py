@@ -4,7 +4,7 @@ from directory.models import Project
 from django.views.generic import ListView
 
 
-class InvestigationsListView(ListView):
+class ProjectsListView(ListView):
     template_name = 'projects/projects-list.html'
     model = Project
 
