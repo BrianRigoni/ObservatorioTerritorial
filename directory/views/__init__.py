@@ -1,3 +1,4 @@
 from .index_view import HomeView
 from .investigations_listview import InvestigationsListView
 from .investigation_detailview import InvestigationDetailView
+from .signup_formview import SignUpFormView
