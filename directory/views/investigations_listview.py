@@ -5,7 +5,7 @@ from django.views.generic import ListView
 
 
 class InvestigationsListView(ListView):
-    template_name = 'investigations-list.html'
+    template_name = 'projects/projects-list.html'
     model = Project
 
     def get(self, request, *args, **kwargs):
