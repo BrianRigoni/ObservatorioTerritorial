@@ -1,75 +1,56 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-
-    <!-- Titulo -->
-    <div class="bg"></div>
-    <div class="jumbotron">
-        <h1> OBSERVATORIO</h1>
-        <h1> TERRITORIAL T.D.F </h1>
-        <hr>
-    </div>
-
-    {% include 'navbar.html' %}
-    
-    <!-- Mision Texto e imagen -->
-    <div class="container-fluid" id="mision-image">
-        <div class="row">
-                <div class="col-md-6" id="mision">
-                    <h1>
-                        MISIÓN
-                    </h1>
-                    <p id="mision-paragraph">
-                        El Observatorio Territorial busca poner a disposición de la comunidad fueguina 
-                        la información geográfica producida por investigaciones de la Universidad Nacional 
-                        de Tierra del Fuego, así como divulgar las líneas de investigación y facilitar 
-                        contactos entre sus integrantes y de ellos con actores del territorio.
-                    </p>
-                </div>
-                <div class="col-md-3" id="image-tdf">
-                    <img src="{% static 'assets/pic.jpg' %}" alt="mapa tierra del fuego" id="tdf-image">
-                </div>
+{% block title %} Inicio {% endblock title %}
+{% block content %}
+        <!-- Titulo -->
+        <div class="bg"></div>
+        <div class="jumbotron">
+            <h1> OBSERVATORIO</h1>
+            <h1> TERRITORIAL T.D.F </h1>
+            <hr>
         </div>
-    </div>
 
-    <!-- CONTACTO -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-10" id="contact">
-                <h1>
-                    CONTACTO
-                </h1>
-                <p>
-                    Esta página es mantenida por Daniel Badagnani (ICPA, dbadagnani@untdf.edu.ar). 
-                    Por información de contacto de los investigadores de cada linea por favor navegue 
-                    por las páginas correspondientes a las lineas.
-                </p>
+        <!-- Mision Texto e imagen -->
+        <div class="container-fluid" id="mision-image">
+            <div class="row">
+                    <div class="col-md-6" id="mision">
+                        <h1>
+                            MISIÓN
+                        </h1>
+                        <p id="mision-paragraph">
+                            El Observatorio Territorial busca poner a disposición de la comunidad fueguina
+                            la información geográfica producida por investigaciones de la Universidad Nacional
+                            de Tierra del Fuego, así como divulgar las líneas de investigación y facilitar
+                            contactos entre sus integrantes y de ellos con actores del territorio.
+                        </p>
+                    </div>
+                    <div class="col-md-3" id="image-tdf">
+                        <img src=" {%  static 'assets/pic.jpg' %}" alt="mapa tierra del fuego" id="tdf-image">
+                    </div>
             </div>
         </div>
-    </div>
 
-
-    <footer>
-        <p>
-            &copy; Ignacio Perez - Brian Rigoni - 2019
-        </p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- CONTACTO -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10" id="contact">
+                    <h1>
+                        CONTACTO
+                    </h1>
+                    <p>
+                        Esta página es mantenida por Daniel Badagnani (ICPA, dbadagnani@untdf.edu.ar).
+                        Por información de contacto de los investigadores de cada linea por favor navegue
+                        por las páginas correspondientes a las lineas.
+                    </p>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
+{% block app_javascript %}
     <script type='text/javascript'>
-        var jumboHeight = $('.jumbotron').outerHeight();
+        let jumboHeight = $('.jumbotron').outerHeight();
         function parallax(){
-            var scrolled = $(window).scrollTop();
+            let scrolled = $(window).scrollTop();
             $('.bg').css('height', (jumboHeight-scrolled) + 'px');
         }
 
@@ -77,5 +58,4 @@
             parallax();
         });
     </script>
-</body>
-</html>
+{% endblock app_javascript %}

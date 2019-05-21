@@ -1,14 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     {% include 'navbar.html' %}
-    {% if investigation %}
-        <h1>Investigacion: {{ investigation.name }}</h1>
+    {% if project %}
+        <h1>Investigacion: {{ project.name }}</h1>
     {% endif %}
-</body>
-</html>
+{% endblock content %}

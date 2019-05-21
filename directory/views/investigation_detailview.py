@@ -1,13 +1,13 @@
 from django.http import request
 from django.shortcuts import render
 from django.views.generic import DetailView
-from directory.models import Investigation
+from directory.models import Project
 
 
 class InvestigationDetailView(DetailView):
-    model = Investigation
+    model = Project
     template_name = 'investigation-detail.html'
 
     def get_object(self):
-        investigation = super().get_object()
-        return investigation
+        project = super().get_object()
+        return project
