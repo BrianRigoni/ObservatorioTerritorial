@@ -46,10 +46,11 @@
             </div>
         </div>
 {% endblock content %}
+{% block app_javascript %}
     <script type='text/javascript'>
-        var jumboHeight = $('.jumbotron').outerHeight();
+        let jumboHeight = $('.jumbotron').outerHeight();
         function parallax(){
-            var scrolled = $(window).scrollTop();
+            let scrolled = $(window).scrollTop();
             $('.bg').css('height', (jumboHeight-scrolled) + 'px');
         }
 
@@ -57,3 +58,4 @@
             parallax();
         });
     </script>
+{% endblock app_javascript %}
