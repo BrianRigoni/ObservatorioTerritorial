@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0"><object model="directory.university" pk="1"><field name="name" type="CharField">Universidad Nacional de Tierra del Fuego</field><field name="url" type="CharField">http://www.untdf.edu.ar/</field></object></django-objects>
