@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+/*
+ *   General
+ *  -----------------
+ */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    /* font-family: "Open Sans";
+    color: rgba(33,33,33,1);
+    font-size: 18px; */
+}
+.jumbotron {
+    position: relative;
+    background-image: url("../assets/beagle-channel-ushuaia.jpg");
+    background-position-y: -65px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 295px;
+    width: 100%;
+    text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.500) 0.3em 0.3em 0.3em;
+    border-radius: 0px;
+    margin: 0;
+}
+.jumbotron h1 {
+    font-family: "Oswald";
+    font-size: 300%;
+    font-weight: bold;
+}
+.jumbotron hr {
+    width: 31%;
+    height: 7px;
+    background: rgb(240, 40, 40, 0.900);
+    margin: 0 auto auto 4px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.wrapper {
+    margin: 0 70px 0 70px;
+}
+.content-index {
+    background: #e9ecef;
+    padding: 3%;
+    margin: auto;
+}
+.content-index img {
+    height: 90%;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px; 
+}
+@media(max-width: 700px) {
+    h1 {
+        font-size: 30px;
+    }
+    .jumbotron h1 {
+        font-size: 30px;
+    }
+    .jumbotron hr {
+        height: 5px;
+        width: 70%;
+    }
+}
+/*
+ *   Navbar
+ *  -----------------
+ */
+.navbar {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+}
+.navbar img{
+    width: 5rem;
+}
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: #212529;
+    text-align: center;
+    padding: 1%;
+}
+.footer p {
+    font-size: 15px;
+    color: #f0f0f0;
+    margin: 0;
+}
+
+/*
+ *   Lockscreen Page
+ *  -----------------
+ */
+.lockscreen-wrapper {
+    margin-top: 4rem;
+}
+.lockscreen-help-block {
+    margin: 4rem auto;
+    max-width: 21rem;
+    padding: 4%;
+    background-color: #ffffffb6;
+    border-radius: 1rem;
+}
+.lockscreen-arrow-btn {
+    border: none !important;
+    background-color: transparent;
+    box-shadow: none !important;
+}
+.lockscreen-arrow-btn:active {
+    font-size: 90%;
+}
+.lockscreen-arrow-btn:focus {
+    outline: 5px auto transparent;
+}
+
+.background-beagle {
+    background: url("../assets/beagle-channel-ushuaia.jpg") no-repeat;
+    background-size: auto;
+}
+/*
+ *   Login and Register Page
+ *  -------------------------
+ */
+.login-page,
+.lockscreen,
+.register-page {
+    background: transparent;
+}
+.logo-title {
+    display: block;
+    color: #ffffff; 
+    font-size: 70px;
+    margin-left: -0.7rem;
+    text-shadow: black 5px 10px 17px;
+}
+.logo-subtitle {
+    display: block;
+    color: #ffffff; 
+    font-size: 40px;
+    text-align: center;
+    margin: -1.5rem auto 2rem 11rem;
+    text-shadow: black 7px 5px 7px;
+}
+.login-box, 
+.register-box {
+    width: 360px;
+    margin-top: 2%;
+}
+.login-box-body, 
+.register-box-body {
+    background: rgba(255, 255, 255, 0.801);
+}
+.social-auth-links {
+    margin: 1% auto 5%;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 5%;
+    align-items: center;
+    width: 100%;
+}
+.input-group-text {
+    height: 35px;
+    width: 40px;
+}
+
+/*
+ * Page: Profile
+ * -------------
+ */
+.profile-user-img {
+    margin: 0 auto;
+    width: 70%;
+    padding: 1px;
+    border: 3px solid #adb5bd;
+    border-radius: 1rem;
+}
+.content-wrapper {
+    margin: 5% auto auto auto;
+}
+
+/*
+ *   General
+ *  ---------
+ */
+.btn-primary {
+    background-color: #3c7fbe;
+    border-color: #3c7fbe;
+}
+.btn-primary:hover {
+    background-color: #2e6191;
+    border-color: #2e6191;
+}
+.btn-social {
+    margin-bottom: 3%;
+    height: 35px;
+    box-shadow: rgba(0, 0, 0, 0.300) 5px 5px 5px;
+    font-family: 'Roboto';
+    text-align: left;
+}
+.btn-social img {
+    margin: 0.8% 1rem auto -1rem;
+    border-radius: 3px;
+}
+.btn-facebook a {
+    color: #ffffff;
+}
+.btn-google {
+    background-color: #ffffff;
+}
+.btn-google a {
+    color: #70757a;
+}
+.btn-facebook:focus,
+.btn-facebook:hover {
+    box-shadow: inset; 
+}
+.btn-facebook:active {
+    outline: none;
+}
