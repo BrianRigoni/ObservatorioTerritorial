@@ -26,9 +26,9 @@
     {% block css_page %}
     {% endblock css_page %}
 </head>
-<body {% if request.path == "/iniciodesesion/" %} class="background-beagle" {% endif %}>
+<body {% if request.path == "/iniciodesesion/" or request.path == "/registro/" %} class="background-beagle" {% endif %}>
 
-    {% if request.path != "/iniciodesesion/" %}
+    {% if request.path != "/iniciodesesion/" and request.path != "/registro/"%}
         <!-- Navigation bar -->
         <nav class="navbar-expand-lg navbar-dark bg-dark navbar">
             <div class="container-fluid">

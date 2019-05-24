@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 
 class SignUpFormView(FormView):
-    template_name = 'accounts/signup.html'
+    template_name = 'register.html'
     form_class = SignUpForm
     success_url = reverse_lazy('SignIn')
 
@@ -24,4 +24,4 @@ class SignUpFormView(FormView):
                 return redirect('SignIn')
         else:
             form = SignUpForm()
-        return render(request, 'accounts/signup.html', {'form': form})
+        return render(request, 'register.html', {'form': form})
