@@ -8,6 +8,7 @@ pylint = "==2.3.1"
 
 [packages]
 django = "==2.2"
+reportlab = "*"
 
 [requires]
 python_version = "3.7"
