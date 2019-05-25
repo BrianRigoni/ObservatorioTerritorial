@@ -3,5 +3,5 @@ from .signup_formview import SignUpFormView
 from .signin_formview import SignInFormView
 from .projects_listview import ProjectsListView
 from .project_detailview import ProjectDetailView
-from .project_formview import ProjectFormView
+from .project_createview import ProjectCreateView
 

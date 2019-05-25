@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib import admin
 from directory.views import SignUpFormView, SignInFormView, HomeView, ProjectsListView, ProjectDetailView, \
-    ProjectFormView
+    ProjectCreateView
 
 
 urlpatterns = [
@@ -10,5 +10,5 @@ urlpatterns = [
     path('iniciodesesion/',  SignInFormView.as_view(), name='SignIn'),
     path('investigaciones/', ProjectsListView.as_view(), name="Projects-List"),
     path('investigaciones/<int:pk>/', ProjectDetailView.as_view(), name="Project-Detail"),
-    path('investigaciones/nueva', ProjectFormView.as_view(), name="Project-Form")
+    path('investigaciones/nueva', ProjectCreateView.as_view(), name="Project-Create")
 ]
