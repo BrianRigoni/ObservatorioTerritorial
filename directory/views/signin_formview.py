@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 class SignInFormView(FormView):
-    template_name = 'accounts/signin.html'
+    template_name = 'login.html'
     success_url = reverse_lazy('Home')
     form_class = AuthenticationForm
 

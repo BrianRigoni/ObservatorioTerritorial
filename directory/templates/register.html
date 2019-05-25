@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %} Registro {% endblock title %}
+
+{% block content %}
+<div class="register-page">
+
+  <div class="register-box">
+
+    <div>
+      <a href="{% url 'Home' %}">
+        <span class="logo-title">
+          <b><i>Observatorio</i></b>
+        </span>
+        <span class="logo-subtitle">
+          <i>Territorial</i>
+        </span>
+      </a>
+    </div>
+
+    <div class="register-box-body">
+      <p class="login-box-msg">Registrar una nueva cuenta</p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <input id="id_username" name="username" type="text" class="form-control" placeholder="Nombre de usuario">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <input id="id_first_name" name="first_name" type="text" class="form-control" placeholder="Nombres">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <input id="id_last_name" name="last_name" type="text" class="form-control" placeholder="Apellidos">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-envelope"></i>
+          </div>
+          <input id="id_email" name="email" type="email" class="form-control" placeholder="Correo electrónico">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-lock"></i>
+          </div>
+          <input id="id_password1" name="password1"  type="password" class="form-control" placeholder="Contraseña">
+        </div>
+        
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-lock"></i>
+          </div>
+          <input id="id_password2" name="password2" type="password" class="form-control" placeholder="Confirmar contraseña">
+        </div>
+        
+        <div class="row">
+          <div class="col-md-8">
+            <div class="container" style="font-size: small">
+              <label>
+                Al hacer click en "Registrarte" aceptas nuestros <a href="#">Términos de servicio</a>.
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-md-4">
+            <button type="submit" value="Register" class="btn btn-primary btn-block btn-flat">Registrarte</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      
+      <!-- /.social-auth-links -->
+      {% include "social_links.html" %}
+
+      <a href="{% url 'SignIn' %}" class="text-center">Ya tengo una cuenta.</a>
+    </div>
+    <!-- /.form-box -->
+  </div>
+  <!-- /.register-box -->
+
+</div>
+{% endblock content %}
