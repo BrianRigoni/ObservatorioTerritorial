@@ -1,6 +1,5 @@
 from django.db import models
 from .researcher import Researcher
-from .publication import Publication
 
 
 class Project(models.Model):
@@ -8,7 +7,6 @@ class Project(models.Model):
     description = models.TextField(max_length=1000, null=False, blank=False)
     responsible = models.ForeignKey(Researcher, on_delete=models.DO_NOTHING, related_name='responsability')
     researchers = models.ManyToManyField(Researcher, through='Authors')
-    publications = models.ForeignKey(Publication, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name = "Investigación"

@@ -1,5 +1,6 @@
 from django.db import models
 from .genre import Genre
+from .project import Project
 
 
 class Publication(models.Model):
@@ -7,6 +8,7 @@ class Publication(models.Model):
     date = models.CharField(max_length=100, null=False, blank=False)
     genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING)
     document = models.FileField(upload_to='directory/publications_files')
+    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, null=True)
 
     class Meta:
         verbose_name = "Publicación"
