@@ -1,5 +1,5 @@
 from django.contrib.auth import login, authenticate, logout
-from django.views.generic import FormView
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from directory.forms import SignUpForm
 from django.shortcuts import render, redirect
@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-class SignUpFormView(FormView):
+class SignUpCreateView(CreateView):
     template_name = 'register.html'
     form_class = SignUpForm
     success_url = reverse_lazy('Home')
