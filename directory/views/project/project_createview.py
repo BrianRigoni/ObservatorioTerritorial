@@ -7,4 +7,4 @@ class ProjectCreateView(CreateView):
     template_name = 'projects/project-form.html'
     model = Project
     success_url = 'projects/project-list.html'
-    fields = ('name', 'description', 'responsible')
+    fields = ('name', 'description', 'background', 'responsible')
