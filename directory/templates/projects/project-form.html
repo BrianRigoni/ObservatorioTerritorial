@@ -3,10 +3,10 @@
 {% block title %} Nueva Investigacion{% endblock title %}
 
 {% block content %}
-   <h1>funciono :3</h1>
+   <h1>funciono :D</h1>
     <form method="POST">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Create">
     </form>
 
