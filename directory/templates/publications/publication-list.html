@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Publicaciones {% endblock title %}
+{% block content %}
+    <h1> Publicaciones </h1>
+    {% if publications  %}
+        <ul>
+        {% for publication in publications %}
+            <li>
+                {{ publication.name }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h2>No hay publicaciones</h2>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'Publication-Create' %}">Nueva Publicacion</a>
+{% endblock content %}

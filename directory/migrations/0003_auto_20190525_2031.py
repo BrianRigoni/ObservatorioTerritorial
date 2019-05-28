@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='project',
-            name='publications',
+            name='publication',
         ),
         migrations.AddField(
             model_name='publication',

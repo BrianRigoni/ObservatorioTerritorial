@@ -90,7 +90,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('description', models.TextField(max_length=1000)),
-                ('publications', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.Publication')),
+                ('publication', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.Publication')),
                 ('researchers', models.ManyToManyField(through='directory.Authors', to='directory.Researcher')),
                 ('responsible', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='responsability', to='directory.Researcher')),
             ],
