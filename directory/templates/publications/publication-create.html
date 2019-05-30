@@ -1,10 +1,28 @@
 {% extends 'base.html' %}
 {% block title %} Nueva publicacion {% endblock title %}
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="">
+            <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Nombre">
+            <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" placeholder="Fecha">
+        </div>
+
+        <div class="">
+            <select class="form-control" name="genre" required id="id_genre" placeholder="Genero">
+                {% for gen in form.genre %}
+                    <option value="{{ gen.id }}"> {{ gen }}</option>
+                {% endfor %}
+            </select>
+            <select class="form-control" name="project" required id="id_project" placeholder="Investigacion">
+                {% for proj in form.project %}
+                <option value="{{ proj.id }}"> {{ proj}} </option>
+                {% endfor %}
+            </select>
+        </div>
+        <input class="form-control" type="file" name="document" required id="id_document" placeholder="Documento">
         <input type="submit" value="Create">
     </form>
+
 
 {% endblock content %}
