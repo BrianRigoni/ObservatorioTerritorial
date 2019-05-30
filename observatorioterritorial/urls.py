@@ -19,6 +19,6 @@ from directory.views import *
 
 urlpatterns = [
     path('', include("directory.urls")),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls, name="Admin"),
 ]
 

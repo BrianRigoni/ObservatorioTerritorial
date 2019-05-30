@@ -2,6 +2,8 @@
 
 {% block title %} Inicio de Sesión {% endblock title %}
 
+{% block bodyclass %} background-beagle {% endblock bodyclass %}
+
 {% block content %}
 <div class="login-page">
 
@@ -21,7 +23,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Ingresa para iniciar tu sesión</p>
 
-        <form action="" method="post">
+        <form method="post">
           {% csrf_token %}
           <div class="input-group">
             <div class="input-group-prepend">
@@ -37,7 +39,7 @@
           </div>
           
           {% if form.errors %}
-              <p class=" label label-danger">
+              <p class="label label-danger">
                   Your username and password didn't match. 
                   Please try again.
               </p>

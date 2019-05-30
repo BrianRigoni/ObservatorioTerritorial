@@ -3,11 +3,54 @@
 {% block title %} Nueva Investigacion{% endblock title %}
 
 {% block content %}
-   <h1>funciono :D</h1>
-    <form method="POST">
+    <div class="register-box-body">
+
+      <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create">
-    </form>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <input id="id_name" name="name" type="text" class="form-control" placeholder="Nombre">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <textarea id="id_description" name="description" class="form-control" placeholder="Descripción"></textarea>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-user"></i>
+          </div>
+          <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes"></textarea>
+        </div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+            <i class="input-group-text fa fa-fw fa-lock"></i>
+            </div>
+
+            <input id="id_responsible" name="responsible" class="form-control" type="text" list="responsibles" placeholder="Responsable">
+
+            <datalist id="responsibles" >
+                {% for resp in form.responsible %}
+                    <option value="{{resp.id}}">{{resp}}</option>
+                {% endfor %}
+            </datalist>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-8">
+          </div>
+          <!-- /.col -->
+          <div class="col-md-4">
+            <button type="submit" value="Create" class="btn btn-primary btn-block btn-flat">Crear</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
 {% endblock content %}
