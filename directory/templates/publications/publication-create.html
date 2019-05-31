@@ -9,16 +9,23 @@
         </div>
 
         <div class="">
-            <select class="form-control" name="genre" required id="id_genre" placeholder="Genero">
-                {% for gen in form.genre %}
-                    <option value="{{ gen.id }}"> {{ gen }}</option>
+
+            <input id="id_genre" name="genre" class="form-control" type="text" list="genres" placeholder="Genero">
+
+            <datalist id="genres">
+                {% for item in form.genre %}
+                    <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
-            </select>
-            <select class="form-control" name="project" required id="id_project" placeholder="Investigacion">
-                {% for proj in form.project %}
-                <option value="{{ proj.id }}"> {{ proj}} </option>
+            </datalist>
+
+            
+            <input id="id_project" name="project" class="form-control" type="text" list="projects" placeholder="Investigacion">
+
+            <datalist id="projects">
+                {% for item in form.project %}
+                    <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
-            </select>
+            </datalist>
         </div>
         <input class="form-control" type="file" name="document" required id="id_document" placeholder="Documento">
         <input type="submit" value="Create">
