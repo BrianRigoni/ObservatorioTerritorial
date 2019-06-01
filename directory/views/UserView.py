@@ -10,7 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class SignIn(FormView):
-    template_name = 'login.html'
+    template_name = 'accounts/login.html'
     success_url = reverse_lazy('Home')
     form_class = AuthenticationForm
 
@@ -23,14 +23,14 @@ class SignIn(FormView):
 
 
 class SignUp(CreateView):
-    template_name = 'register.html'
+    template_name = 'accounts/register.html'
     form_class = SignUpForm
     success_url = reverse_lazy('Home')
 
     def get(self, request, *args, **kwargs):
         """Handle GET requests: instantiate a blank version of the form."""
         form = SignUpForm()
-        return render(request, 'register.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         """

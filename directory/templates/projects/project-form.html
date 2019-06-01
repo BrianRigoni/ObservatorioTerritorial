@@ -1,38 +1,23 @@
 {% extends 'base.html' %}
-
 {% block title %} Nueva Investigacion{% endblock title %}
-
 {% block content %}
-    <div class="register-box-body">
+    <div class="container">
 
       <form method="POST">
         {% csrf_token %}
         <div class="input-group">
-          <div class="input-group-prepend">
-            <i class="input-group-text fa fa-fw fa-user"></i>
-          </div>
           <input id="id_name" name="name" type="text" class="form-control" placeholder="Nombre">
         </div>
 
         <div class="input-group">
-          <div class="input-group-prepend">
-            <i class="input-group-text fa fa-fw fa-user"></i>
-          </div>
           <textarea id="id_description" name="description" class="form-control" placeholder="Descripción"></textarea>
         </div>
 
         <div class="input-group">
-          <div class="input-group-prepend">
-            <i class="input-group-text fa fa-fw fa-user"></i>
-          </div>
           <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes"></textarea>
         </div>
 
         <div class="input-group">
-            <div class="input-group-prepend">
-            <i class="input-group-text fa fa-fw fa-lock"></i>
-            </div>
-
             <input id="id_responsible" name="responsible" class="form-control" type="text" list="responsibles" placeholder="Responsable">
 
             <datalist id="responsibles" >

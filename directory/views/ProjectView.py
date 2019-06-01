@@ -1,11 +1,11 @@
 from django.views.generic import CreateView, DetailView, ListView
 from django.shortcuts import render
 from django.http import request
-from directory.models import Project
+from directory.models import Project, Researcher
 
 
 class ProjectsListView(ListView):
-    template_name = 'projects/projects-list.html'
+    template_name = 'projects/project-list.html'
     model = Project
 
     def get(self, request, *args, **kwargs):

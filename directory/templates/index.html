@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %} Inicio {% endblock title %}
-
 {% block content %}
     <div class="wrapper">
         <!-- Titulo -->
@@ -12,27 +10,27 @@
             <hr>
         </div>
 
-        <div class="content-index">
+        <div class="content-index text-justify">
             <!-- Mision Texto e imagen -->
             <div class="container-fluid">
                 <div class="row">
-                        <div class="col-md-6" id="mision">
-                            <h1>
-                                MISIÓN
-                            </h1>
-                            <p id="mision-paragraph">
-                                El Observatorio Territorial busca poner a disposición de la comunidad fueguina
-                                la información geográfica producida por investigaciones de la Universidad Nacional
-                                de Tierra del Fuego, así como divulgar las líneas de investigación y facilitar
-                                contactos entre sus integrantes y de ellos con actores del territorio.
-                            </p>
-                        </div>
-                        <div class="col-md-3" id="image-tdf">
-                            <img src=" {%  static 'assets/pic.jpg' %}" alt="mapa tierra del fuego" id="tdf-image">
-                        </div>
+                    <div class="col-md-6">
+                        <h1>
+                            MISIÓN
+                        </h1>
+                        <p id="mision-paragraph">
+                            El Observatorio Territorial busca poner a disposición de la comunidad fueguina
+                            la información geográfica producida por investigaciones de la Universidad Nacional
+                            de Tierra del Fuego, así como divulgar las líneas de investigación y facilitar
+                            contactos entre sus integrantes y de ellos con actores del territorio.
+                        </p>
+                    </div>
+                    <div class="col-md-3 ml-5 image-tdf">
+                        <img src=" {%  static 'assets/pic.jpg' %}" alt="mapa tierra del fuego">
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10" id="contact">
+                    <div class="col-md-11">
                         <h1>
                             CONTACTO
                         </h1>
