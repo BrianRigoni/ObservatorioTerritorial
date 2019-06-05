@@ -1,35 +1,32 @@
 {% extends 'base.html' %}
 {% block title %} Nueva publicacion {% endblock title %}
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-        <div class="">
-            <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Nombre">
-            <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" placeholder="Fecha">
-        </div>
 
-        <div class="">
 
-            <input id="id_genre" name="genre" class="form-control" type="text" list="genres" placeholder="Genero">
+    <div class="ml-5">
+        <h3>Nueva publicación</h3>
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <input class="form-control row mt-2" type="text" name="name" maxlength="100" required id="id_name" placeholder="Nombre">
 
+            <input class="form-control row mt-2" type="date" name="date" maxlength="100" required id="id_date" placeholder="Fecha">
+
+            <input class="form-control row mt-2" type="text" name="genre" list="genres" required id="id_genre" placeholder="Genero">
             <datalist id="genres">
                 {% for item in form.genre %}
                     <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
             </datalist>
 
-            
-            <input id="id_project" name="project" class="form-control" type="text" list="projects" placeholder="Investigacion">
-
+            <input class="form-control row mt-2" type="text" name="project" list="projects" required id="id_project" placeholder="Investigacion">
             <datalist id="projects">
                 {% for item in form.project %}
                     <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
             </datalist>
-        </div>
-        <input class="form-control" type="file" name="document" required id="id_document" placeholder="Documento">
-        <input type="submit" value="Create">
-    </form>
+            <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
+            <input class="row btn btn-primary mt-2" type="submit" value="Subir">
+        </form>
 
-
+    </div>
 {% endblock content %}
