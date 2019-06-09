@@ -25,8 +25,32 @@
                 {% endfor %}
             </datalist>
             <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
+            <h6 class="mt-2"> Autores </h6>
+            <div class="row">
+                <select class="js-example-basic-multiple col-md-6" name="states[]" multiple="multiple" id="id_authors">    
+                {% for researcher in researchers %}
+                    <option value="{{researcher.id}}"> {{ researcher }} </option>
+                {% endfor %}
+                </select>
+            </div>
+            
+            
             <input class="row btn btn-primary mt-2" type="submit" value="Subir">
         </form>
 
+        
+
+
     </div>
 {% endblock content %}
+
+{% block jspage %}
+{% comment %} script de select2 {% endcomment %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
+{% endblock jspage %}

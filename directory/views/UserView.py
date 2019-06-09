@@ -7,6 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, FormView
 
 from directory.forms import SignUpForm
+from directory.models import Researcher
 
 
 class SignIn(FormView):
@@ -42,7 +43,12 @@ class SignUp(CreateView):
             raw_password = form.cleaned_data.get('password1')
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
+            names = form.cleaned_data.get('names')
+            surnames = form.cleaned_data.get('surnames')
             user = User.objects.create_user(username, email, raw_password)
+            # asi como se crea el usuario, este es un investigador
+            investigator = Researcher.objects.create(names=names, surnames=surnames, email=email, user= user)
+            investigator.save()
             user.save()
             user = authenticate(username=username, password=raw_password)
             login(request, user)

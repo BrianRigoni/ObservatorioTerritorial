@@ -7,7 +7,7 @@ class Project(models.Model):
     description = models.TextField(max_length=1000, null=False, blank=False)
     background = models.TextField(max_length=1000, null=True)
     responsible = models.ForeignKey(Researcher, on_delete=models.DO_NOTHING, related_name='responsability')
-    researchers = models.ManyToManyField(Researcher, through='Authors')
+    researchers = models.ManyToManyField(Researcher, through='Author')
 
     class Meta:
         verbose_name = "Investigación"
