@@ -1,12 +1,12 @@
-from django.contrib.auth import login, authenticate, logout
-from django.views.generic import FormView, CreateView
-from django.urls import reverse_lazy
-from directory.forms import SignUpForm
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, FormView
+
+from directory.forms import SignUpForm
 
 
 class SignIn(FormView):
@@ -50,3 +50,6 @@ class SignUp(CreateView):
         else:
             return self.form_invalid(form)
 
+def logout_view(request):
+    logout(request)
+    return redirect('Home')

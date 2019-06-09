@@ -26,8 +26,12 @@ html, body {
     width: 100%;
     text-align: left;
     text-shadow: rgba(0, 0, 0, 0.500) 0.3em 0.3em 0.3em;
-    border-radius: 0px;
     margin: 0;
+}
+.project-jumbotron {
+    background-position-y: 24%;
+    text-align: center;
+    text-transform: capitalize;
 }
 .jumbotron h1 {
     font-family: "Oswald";
@@ -45,12 +49,6 @@ html, body {
 .container-fluid {
     padding: 25px 7.5px 7.5px 7.5px;
 }
-/* 
-.content-index {
-    background: #e9ecef;
-    padding: 3%;
-    margin: auto;
-} */
 .image-tdf {
     height: fit-content;
 }
@@ -58,6 +56,16 @@ html, body {
     width: 28rem;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px; 
+}
+.container-project {
+    padding: 0 2rem 0 2rem;
+}
+.container-project .row {
+    margin-top: 2rem;
+}
+.container-project .row p {
+    margin-bottom: 1rem;
+    margin-left: 2rem;
 }
 @media(max-width: 700px) {
     h1 {
@@ -79,6 +87,7 @@ html, body {
     padding: 0;
     overflow-y: auto;
     height: 542px;
+    position: sticky;
 }
 .untdf {
     width: 90%;
@@ -89,6 +98,30 @@ html, body {
 }
 .image-sidebar {
     border-radius: 50%;
+}
+.info a {
+    color: #C2C7D0;
+    text-transform: capitalize;
+}
+.info i {
+    color: #C2C7D0;
+}
+.user-panel {
+    display: inherit;
+}
+.image-profile {
+    width: 50px;
+    height: 50px;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 8px 0 8px;
+    position: relative;
+    border: #C2C7D0 outset thick;
+    border-radius: 50%;
+}
+.image-profile img {
+    max-width: none !important;
+    width: 100%;
 }
  /*
  *   Navbar

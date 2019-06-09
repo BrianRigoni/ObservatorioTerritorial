@@ -2,6 +2,28 @@
 {% load static %}
 {% block title %} {{ project.name }} {% endblock title %}
 {% block content %}
-    <h1> {{ project.name }} </h1>
+    <div class="wrapper">
+        <!-- Titulo -->
+        <div class="jumbotron project-jumbotron">
+            <h1> {{ project.name }} </h1>
+        </div>
 
+        <div class="content-index text-justify">
+            <div class="container-fluid container-project">
+                <div class="row">
+                    <h1>Resumen de la línea</h1>
+                    <p>{{ project.description }}</p>
+                </div>
+                <div class="row">
+                    <h1>Antecedentes</h1>
+                    <p>{{ project.background }}</p>
+                </div>
+                <div class="row">
+                    <h1>Publicaciones</h1>
+                    {{ project.publication }}
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock content %}

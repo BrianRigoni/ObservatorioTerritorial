@@ -1,15 +1,17 @@
 from django.views.generic import CreateView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from directory.models import Publication
 from django.shortcuts import render
 
 
-class PublicationCreateView(CreateView):
+class PublicationCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'SignIn'
     model = Publication
     template_name = 'publications/publication-create.html'
     fields = ['name', 'date', 'genre', 'document', 'project']
 
-
-class PublicationsListView(ListView):
+class PublicationsListView(LoginRequiredMixin, ListView):
+    login_url = 'SignIn'
     model = Publication
     template_name = 'publications/publication-list.html'
 
