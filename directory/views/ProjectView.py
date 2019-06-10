@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DetailView, ListView
 
-from directory.models import Project, Researcher
+from directory.models import Project, Researcher, Publication
 
 
 class ProjectsListView(LoginRequiredMixin, ListView):
@@ -28,6 +28,8 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     template_name = 'projects/project-detail.html'
     model = Project
 
-    def get_object(self):
-        project = super().get_object()
-        return project
+    def get(self, request, pk):
+        project = Project.objects.get(pk=pk)
+        publications = Publication.objects.filter(project=project)
+        context_dict = {'project': project, 'publications': publications}
+        return render(request, self.template_name, context=context_dict)

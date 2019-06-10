@@ -13,26 +13,25 @@
 
             <input class="form-control row mt-2" type="text" name="genre" list="genres" required id="id_genre" placeholder="Genero">
             <datalist id="genres">
-                {% for item in form.genre %}
+                {% for item in genres %}
                     <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
             </datalist>
 
             <input class="form-control row mt-2" type="text" name="project" list="projects" required id="id_project" placeholder="Investigacion">
             <datalist id="projects">
-                {% for item in form.project %}
+                {% for item in projects %}
                     <option value="{{item.id}}">{{item}}</option>
                 {% endfor %}
             </datalist>
-            <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
-            <h6 class="mt-2"> Autores </h6>
-            <div class="row">
+            <div class="row mt-2">
                 <select class="js-example-basic-multiple col-md-6" name="states[]" multiple="multiple" id="id_authors">    
-                {% for researcher in researchers %}
-                    <option value="{{researcher.id}}"> {{ researcher }} </option>
+                {% for item in researchers %}
+                    <option value="{{item.id}}"> {{ item }} </option>
                 {% endfor %}
-                </select>
+                </select>   
             </div>
+            <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
             
             
             <input class="row btn btn-primary mt-2" type="submit" value="Subir">
@@ -50,7 +49,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
+        $('.js-example-basic-multiple').select2({
+        placeholder: 'Seleccione autor/es'
+        });
+        
     });
 </script>
 {% endblock jspage %}

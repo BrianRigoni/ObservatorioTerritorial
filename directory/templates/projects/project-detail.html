@@ -20,7 +20,11 @@
                 </div>
                 <div class="row">
                     <h1>Publicaciones</h1>
-                    {{ project.publication }}
+                    <ul>
+                    {% for item in publications %}
+                        <li> {{ item }}</li>
+                    {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
