@@ -1,6 +1,6 @@
 from .index_view import HomeView
-from .projects_listview import ProjectsListView
-from .project_detailview import ProjectDetailView
-from .signup_formview import SignUpFormView
-from .signin_formview import SignInFormView
+from .UserView import SignUp, SignIn, ProfileView
+from .ProjectView import ProjectCreateView, ProjectDetailView, ProjectsListView
+from .PublicationView import PublicationCreateView, PublicationsListView
+
 

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Nueva publicacion {% endblock title %}
+{% block content %}
+
+
+    <div class="ml-5 col-md-6">
+        <h3>Nueva publicación</h3>
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <input class="form-control row mt-2" type="text" name="name" maxlength="100" required id="id_name" placeholder="Nombre">
+
+            <input class="form-control row mt-2" type="date" name="date" maxlength="100" required id="id_date" placeholder="Fecha">
+
+            <input class="form-control row mt-2" type="text" name="genre" list="genres" required id="id_genre" placeholder="Genero">
+            <datalist id="genres">
+                {% for item in genres %}
+                    <option value="{{item.id}}">{{item}}</option>
+                {% endfor %}
+            </datalist>
+
+            <input class="form-control row mt-2" type="text" name="project" list="projects" required id="id_project" placeholder="Investigacion">
+            <datalist id="projects">
+                {% for item in projects %}
+                    <option value="{{item.id}}">{{item}}</option>
+                {% endfor %}
+            </datalist>
+            <div class="row mt-2">
+                <select class="js-example-basic-multiple col-md-6" name="states[]" multiple="multiple" id="id_authors">    
+                {% for item in researchers %}
+                    <option value="{{item.id}}"> {{ item }} </option>
+                {% endfor %}
+                </select>   
+            </div>
+            <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
+            
+            
+            <input class="row btn btn-primary mt-2" type="submit" value="Subir">
+        </form>
+
+        
+
+
+    </div>
+{% endblock content %}
+
+{% block jspage %}
+{% comment %} script de select2 {% endcomment %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+        placeholder: 'Seleccione autor/es'
+        });
+        
+    });
+</script>
+{% endblock jspage %}

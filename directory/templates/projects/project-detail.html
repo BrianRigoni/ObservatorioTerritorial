@@ -2,6 +2,50 @@
 {% load static %}
 {% block title %} {{ project.name }} {% endblock title %}
 {% block content %}
-    <h1> {{ project.name }} </h1>
+    <div class="wrapper">
+        <!-- Titulo -->
+        <div class="jumbotron project-jumbotron">
+            <h1> {{ project.name }} </h1>
+        </div>
 
+        <div class="content-index text-justify">
+            <div class="container-fluid container-project">
+                <div class="row">
+                    <h1>Resumen de la línea</h1>
+                    {% if project.description != None %}
+                        <p>{{ project.description }}</p>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %} 
+                </div>
+                <div class="row">
+                    <h1>Antecedentes</h1>
+                    {% if project.background != None %}
+                        <p>{{ project.background }}</p>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %}    
+                </div>
+                <div class="row">
+                    <h1>Publicaciones</h1>
+                    {% if publications != None %}
+                        <ul>
+                        {% for item in publications %}
+                            <li><a href="{{ item.document.name }}"> {{ item }} </a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %}   
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock content %}

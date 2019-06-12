@@ -20,16 +20,18 @@ html, body {
 .jumbotron {
     position: relative;
     background-image: url("../assets/beagle-channel-ushuaia.jpg");
-    background-position-y: -65px;
+    background-position-y: 28%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    height: 295px;
     width: 100%;
     text-align: left;
     text-shadow: rgba(0, 0, 0, 0.500) 0.3em 0.3em 0.3em;
-    border-radius: 0px;
     margin: 0;
+}
+.project-jumbotron {
+    background-position-y: 24%;
+    text-align: center;
+    text-transform: capitalize;
 }
 .jumbotron h1 {
     font-family: "Oswald";
@@ -44,18 +46,29 @@ html, body {
     border-bottom-left-radius: 50px;
     border-top-right-radius: 50px;
 }
-.wrapper {
-    margin: 0 70px 0 70px;
+.container-fluid {
+    padding: 25px 7.5px 7.5px 7.5px;
 }
-.content-index {
-    background: #e9ecef;
-    padding: 3%;
-    margin: auto;
+.image-tdf {
+    height: fit-content;
 }
 .content-index img {
-    height: 90%;
+    width: 28rem;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px; 
+}
+.container-project {
+    padding: 0 2rem 0 2rem;
+}
+.container-project .row {
+    margin-top: 2rem;
+}
+.container-project .row p {
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+h1 {
+    width: -webkit-fill-available;
 }
 @media(max-width: 700px) {
     h1 {
@@ -70,16 +83,56 @@ html, body {
     }
 }
 /*
+ *   Sidebar
+ *  -------------------------
+ */
+.sidebar {
+    padding: 0;
+    overflow-y: auto;
+    height: 542px;
+    position: sticky;
+}
+.untdf {
+    width: 90%;
+    max-height: unset;
+}
+.brand-image {
+    margin: 0 .5rem 0 .5rem;
+}
+.image-sidebar {
+    border-radius: 50%;
+}
+.pagetext-color *{
+    color: #C2C7D0;
+}
+.user-panel {
+    display: inherit;
+}
+.image-profile {
+    width: 50px;
+    height: 50px;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 8px 0 8px;
+    position: relative;
+    border: #C2C7D0 outset thick;
+    border-radius: 50%;
+}
+.image-profile img {
+    max-width: none !important;
+    width: 100%;
+}
+ /*
  *   Navbar
  *  -----------------
  */
 .navbar {
-    position: sticky;
-    z-index: 1;
+    position: fixed;
+    z-index: 1000;
     top: 0;
-    width: 100%;
+    width: -webkit-fill-available;
 }
-.navbar img{
+.navbar img {
     width: 5rem;
 }
 .footer {
@@ -154,6 +207,12 @@ html, body {
     width: 360px;
     margin-top: 2%;
 }
+.login-box { 
+    margin-bottom: auto;
+}
+.register-box {
+    margin-bottom: 4%;
+}
 .login-box-body, 
 .register-box-body {
     background: rgba(255, 255, 255, 0.801);
@@ -182,11 +241,10 @@ html, body {
     padding: 1px;
     border: 3px solid #adb5bd;
     border-radius: 1rem;
-}
+} 
 .content-wrapper {
-    margin: 5% auto auto auto;
+    margin-top: 3.5rem;
 }
-
 /*
  *   General
  *  ---------

@@ -9,7 +9,7 @@ class Researcher(models.Model):
     surnames = models.CharField(max_length=100, null=False, blank=False)
     names = models.CharField(max_length=100, null=False, blank=False)
     email = models.EmailField(max_length=100, null=False, blank=False)
-    institute = models.ForeignKey(Institute, null=False, on_delete=models.DO_NOTHING)
+    institute = models.ForeignKey(Institute, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name = "Investigador"

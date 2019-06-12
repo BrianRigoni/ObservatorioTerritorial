@@ -1,14 +1,13 @@
 from django.db import models
 from .researcher import Researcher
-from .publication import Publication
 
 
 class Project(models.Model):
     name = models.CharField(max_length= 200, null=False, blank=False)
     description = models.TextField(max_length=1000, null=False, blank=False)
+    background = models.TextField(max_length=1000, null=True)
     responsible = models.ForeignKey(Researcher, on_delete=models.DO_NOTHING, related_name='responsability')
-    researchers = models.ManyToManyField(Researcher, through='Authors')
-    publications = models.ForeignKey(Publication, on_delete=models.DO_NOTHING)
+    researchers = models.ManyToManyField(Researcher, through='Author')
 
     class Meta:
         verbose_name = "Investigación"

@@ -3,7 +3,7 @@ from .researcher import Researcher
 from .project import Project
 
 
-class Authors(models.Model):
+class Author(models.Model):
     project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
     researcher = models.ForeignKey(Researcher, on_delete=models.DO_NOTHING)
     order = models.PositiveIntegerField()
@@ -13,4 +13,4 @@ class Authors(models.Model):
         verbose_name_plural = "Autores"
 
     def __str__(self):
-        return self.project + self.researcher + self.order
+        return self.order + self.researcher
