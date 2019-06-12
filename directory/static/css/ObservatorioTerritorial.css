@@ -47,26 +47,24 @@ html, body {
     border-top-right-radius: 50px;
 }
 .container-fluid {
-    padding: 25px 7.5px 7.5px 7.5px;
+    padding: 0 7.5px 7.5px 7.5px;
+}
+.text-justify .row {
+    margin-top: 2rem;
+}
+.text-justify .row p {
+    margin: 0;
+    padding: 0 2%;
 }
 .image-tdf {
     height: fit-content;
 }
-.content-index img {
-    width: 28rem;
+.image-tdf img {
+    width: 90%;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px; 
 }
-.container-project {
-    padding: 0 2rem 0 2rem;
-}
-.container-project .row {
-    margin-top: 2rem;
-}
-.container-project .row p {
-    margin-bottom: 1rem;
-    margin-left: 2rem;
-}
+
 h1 {
     width: -webkit-fill-available;
 }
@@ -80,6 +78,9 @@ h1 {
     .jumbotron hr {
         height: 5px;
         width: 70%;
+    }
+    .image-tdf img {
+        width: 100%;
     }
 }
 /*
