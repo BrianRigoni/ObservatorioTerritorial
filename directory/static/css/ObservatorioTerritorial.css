@@ -67,6 +67,9 @@ html, body {
     margin-bottom: 1rem;
     margin-left: 2rem;
 }
+h1 {
+    width: -webkit-fill-available;
+}
 @media(max-width: 700px) {
     h1 {
         font-size: 30px;
@@ -99,11 +102,7 @@ html, body {
 .image-sidebar {
     border-radius: 50%;
 }
-.info a {
-    color: #C2C7D0;
-    text-transform: capitalize;
-}
-.info i {
+.pagetext-color *{
     color: #C2C7D0;
 }
 .user-panel {

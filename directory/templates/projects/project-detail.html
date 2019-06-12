@@ -12,19 +12,37 @@
             <div class="container-fluid container-project">
                 <div class="row">
                     <h1>Resumen de la línea</h1>
-                    <p>{{ project.description }}</p>
+                    {% if project.description != None %}
+                        <p>{{ project.description }}</p>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %} 
                 </div>
                 <div class="row">
                     <h1>Antecedentes</h1>
-                    <p>{{ project.background }}</p>
+                    {% if project.background != None %}
+                        <p>{{ project.background }}</p>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %}    
                 </div>
                 <div class="row">
                     <h1>Publicaciones</h1>
-                    <ul>
-                    {% for item in publications %}
-                        <li> {{ item }}</li>
-                    {% endfor %}
-                    </ul>
+                    {% if publications != None %}
+                        <ul>
+                        {% for item in publications %}
+                            <li><a href="{{ item.document.name }}"> {{ item }} </a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %}   
                 </div>
             </div>
         </div>

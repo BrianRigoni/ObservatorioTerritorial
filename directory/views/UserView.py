@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView, FormView, TemplateView
 
 from directory.forms import SignUpForm
 from directory.models import Researcher
@@ -55,6 +55,13 @@ class SignUp(CreateView):
             return redirect('Home')
         else:
             return self.form_invalid(form)
+
+
+class ProfileView(TemplateView):
+    template_name = "accounts/profile.html"
+
+    def index(self, request):
+        return render(request, self.template_name)
 
 def logout_view(request):
     logout(request)

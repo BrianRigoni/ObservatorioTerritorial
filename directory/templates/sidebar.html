@@ -14,10 +14,10 @@
             <div class="image-profile pull-left">
                 <img src="{% static 'assets\default-profile.png' %}" class="pull-left" alt="Image profile">
             </div>
-            <div class="info brand-text"> 
-                <a href="#" class="d-block mb-2">{{user.username}}</a>
+            <div class="info brand-text pagetext-color"> 
+                <a href="{% url 'Profile' %}" class="d-block mb-2">{{user.username}}</a>
                 <i class="fa fa-sign-out"></i>
-                <a href="{% url 'Logout' %}">Cerrar sesión</a>
+                <a href="{% url 'Logout' %}">Cerrar Sesión</a>
             </div>
         </div>
     {% endif %}

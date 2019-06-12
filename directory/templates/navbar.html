@@ -7,9 +7,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'Home' %}" class="nav-link">Inicio</a>
       </li>
-      {% comment %} <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'Logout' %}" class="nav-link">Cerrar sesión</a>
-      </li> {% endcomment %}
     </ul>
 
     <!-- SEARCH FORM -->
@@ -26,7 +23,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
+      {% comment %} <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-comments-o"></i>
@@ -84,6 +81,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
+       {% endcomment %}
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -111,11 +109,11 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
+      {% comment %} <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
           <i class="fa fa-th-large"></i>
         </a>
-      </li>
+      </li> {% endcomment %}
     </ul>
 </nav>
 <!-- /.navbar -->
