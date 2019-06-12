@@ -3,6 +3,7 @@ from .genre import Genre
 from .project import Project
 from .author import Author
 
+
 class Publication(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     date = models.CharField(max_length=100, null=False, blank=False)
