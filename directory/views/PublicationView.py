@@ -2,14 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from directory.models import Publication
 from django.views.generic import CreateView, ListView, View
 from directory.models import Publication, Author, Researcher, Genre, Project
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from directory.forms import PublicationForm
 
 
 class PublicationCreateView(LoginRequiredMixin, CreateView):
     login_url = 'SignIn'
     model = Publication
     template_name = 'publications/publication-create.html'
-    fields = ['name', 'date', 'genre', 'document', 'project']
 
     def get(self, request, *args, **kwargs):
         researchers = Researcher.objects.all()
@@ -17,6 +17,22 @@ class PublicationCreateView(LoginRequiredMixin, CreateView):
         projects = Project.objects.all() # luego filtrar solo por las que participa el usuario
         context_dict = {'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
+
+    def post(self, request, *args, **kwargs):
+        form = PublicationForm(request.POST, request.FILES)
+        authors = request.POST.getlist('authors')
+        if form.is_valid():
+            publication = form.save()
+            i = 1
+            for author in authors:
+                researcher = Researcher.objects.get(pk=author)
+                a = Author.objects.create(researcher=researcher, publication=publication, project=publication.project, order=i)
+                i += 1
+                a.save()
+            return redirect('Publication-List')
+        else:
+            form = PublicationForm()
+        return render(request, self.template_name, {'form': form})
 
 
 class PublicationsListView(LoginRequiredMixin, ListView):
