@@ -25,7 +25,7 @@
                 {% endfor %}
             </datalist>
             <div class="row mt-2">
-                <select class="js-example-basic-multiple col-md-6" name="states[]" multiple="multiple" id="id_authors">    
+                <select class="js-example-basic-multiple col-md-6" name="authors" multiple="multiple" id="id_authors">
                 {% for item in researchers %}
                     <option value="{{item.id}}"> {{ item }} </option>
                 {% endfor %}
