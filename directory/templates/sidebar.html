@@ -12,7 +12,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-1">
             <div class="image-profile pull-left">
-                <img src="{% static 'assets\default-profile.png' %}" class="pull-left" alt="Image profile">
+                <img src="/{{user.researcher.profile_picture.url}}" class="pull-left" alt="Image profile">
             </div>
             <div class="info brand-text pagetext-color"> 
                 <a href="{% url 'Profile' %}" class="d-block mb-2">{{user.username}}</a>

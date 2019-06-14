@@ -89,9 +89,17 @@ h1 {
  */
 .sidebar {
     padding: 0;
-    overflow-y: auto;
-    height: 542px;
+    height: auto;
+    overflow: hidden;
     position: sticky;
+}
+.main-sidebar {
+    overflow-y: scroll;
+}
+.main-sidebar::-webkit-scrollbar {
+    display: none;
+    /* width: 0px;
+    background: transparent; */
 }
 .untdf {
     width: 90%;

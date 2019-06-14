@@ -20,9 +20,9 @@
         <div class="input-group">
             <input id="id_responsible" name="responsible" class="form-control" type="text" list="responsibles" placeholder="Responsable">
 
-            <datalist id="responsibles" >
+            <datalist id="responsibles">
                 {% for resp in form.responsible %}
-                    <option value="{{resp.id}}">{{resp}}</option>
+                    <option value="{{resp.names}}"></option>
                 {% endfor %}
             </datalist>
         </div>
