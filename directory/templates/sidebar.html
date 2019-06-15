@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 
 <aside class="main-sidebar elevation-4 sidebar-dark-info">
 <!-- Brand Logo -->
@@ -10,13 +11,15 @@
 
     {% if user.is_authenticated %}
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-1">
+        <div class="user-panel mt-3 pb-3">
             <div class="image-profile pull-left">
-                <img src="/{{user.researcher.profile_picture.url}}" class="pull-left" alt="Image profile">
+                {% thumbnail user.researcher.profile_picture "200x200" crop="center" as im %}
+                    <img src="/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="pull-left" alt="Image profile">
+                {% endthumbnail %}
             </div>
             <div class="info brand-text pagetext-color"> 
                 <a href="{% url 'Profile' %}" class="d-block mb-2">{{user.username}}</a>
-                <i class="fa fa-sign-out"></i>
+                <i class="fas fa-sign-out-alt"></i>
                 <a href="{% url 'Logout' %}">Cerrar Sesión</a>
             </div>
         </div>
@@ -43,19 +46,19 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fa fa-circle-o nav-icon"></i>
+                        <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v1</p>
                     </a>
                     </li>
                     <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fa fa-circle-o nav-icon"></i>
+                        <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v2</p>
                     </a>
                     </li>
                     <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fa fa-circle-o nav-icon"></i>
+                        <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v3</p>
                     </a>
                     </li>
@@ -63,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                 <a href="/admin/" class="nav-link">
-                    <i class="nav-icon fa fa-pie-chart"></i>
+                    <i class="nav-icon fas fa-chart-pie"></i>
                     <p>
                     Admin
                     </p>
@@ -201,7 +204,7 @@
             <li class="nav-header">PERFIL</li>
             <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-calendar"></i>
+                <i class="nav-icon far fa-calendar"></i>
                 <p>
                 Calendario
                 <span class="badge badge-info right">2</span>
@@ -247,7 +250,7 @@
             </li>
             <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-plus-square-o"></i>
+                <i class="nav-icon far fa-plus-square"></i>
                 <p>
                 Opciones
                 </p>

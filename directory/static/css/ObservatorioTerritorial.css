@@ -98,8 +98,6 @@ h1 {
 }
 .main-sidebar::-webkit-scrollbar {
     display: none;
-    /* width: 0px;
-    background: transparent; */
 }
 .untdf {
     width: 90%;
@@ -114,9 +112,6 @@ h1 {
 .pagetext-color *{
     color: #C2C7D0;
 }
-.user-panel {
-    display: inherit;
-}
 .image-profile {
     width: 50px;
     height: 50px;
@@ -126,6 +121,11 @@ h1 {
     position: relative;
     border: #C2C7D0 outset thick;
     border-radius: 50%;
+}
+.user-panel .info {
+    position: absolute;
+    top: -3px;
+    right: 63px;
 }
 .image-profile img {
     max-width: none !important;
@@ -156,7 +156,12 @@ h1 {
     color: #f0f0f0;
     margin: 0;
 }
-
+.card-primary:not(.card-outline) .card-header, .nav-link.active {
+    background-color: #20B7BD !important;
+} 
+.card-primary.card-outline {
+    border-color: #20B7BD !important;
+}
 /*
  *   Lockscreen Page
  *  -----------------

@@ -35,7 +35,7 @@
                     {% if publications != None %}
                         <ul>
                         {% for item in publications %}
-                            <li><a href="{{item.document.name}}"> {{ item }} </a></li>
+                            <li><a href="/{{item.document.url}}" target="_blank"> {{ item }} </a></li>
                         {% endfor %}
                         </ul>
                     {% else %}

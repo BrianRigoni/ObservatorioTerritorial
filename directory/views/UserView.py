@@ -85,6 +85,7 @@ class SignUpView(CreateView):
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
+    login_url = 'SignIn'
     template_name = "accounts/profile.html"
 
     def index(self, request):

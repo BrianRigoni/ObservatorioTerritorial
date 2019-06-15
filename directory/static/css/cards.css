@@ -73,6 +73,14 @@
     height: 140px;
 	font-family: 'Raleway', sans-serif;
 }
+
+.card-desc a.fas {
+    margin-left: 170px;
+    vertical-align: middle;
+    font-size: 30px;
+    color: slategrey;
+}
+
 .btn-card{
 	background-color: #20B7BD;
 	color: #fff;

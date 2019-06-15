@@ -14,7 +14,8 @@
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}"> {% endcomment %}
+     <link rel="stylesheet" href="{% static 'fontawesome-web/css/all.css' %}">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     
@@ -73,6 +74,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
   <script src="{% static 'js/adminlte.js' %}"></script>
 
+ {% comment %}  <script src="https://kit.fontawesome.com/7704a2dd62.js"></script> {% endcomment %}
   {% block jspage %}
   {% endblock jspage %}
 </body>
