@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib import admin
 from directory.views import (SignInView, SignUpView, LogoutView, 
     LockscreenView, ProfileView, HomeView, 
-    ProjectCreateView, ProjectDetailView, ProjectsListView, 
+    ProjectCreateView, ProjectDetailView, ProjectsListView, ProjectDownloadView,
     PublicationsListView, PublicationCreateView)
 
 from django.conf import settings
@@ -19,6 +19,7 @@ urlpatterns = [
     path('investigaciones/', ProjectsListView.as_view(), name="Projects-List"),
     path('investigaciones/<int:pk>/', ProjectDetailView.as_view(), name="Project-Detail"),
     path('investigaciones/nueva', ProjectCreateView.as_view(), name="Project-Create"),
+    path('investigacionespdf/<int:pk>', ProjectDownloadView.as_view(), name="Project-Info-Download"),
     path('publicaciones/', PublicationsListView.as_view(), name="Publication-List"),
     path('publicaciones/nueva', PublicationCreateView.as_view(), name="Publication-Create"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

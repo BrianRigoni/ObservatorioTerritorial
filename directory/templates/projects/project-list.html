@@ -25,8 +25,8 @@
                     <div class="card-desc">
                         <h3>{{ project.name }}</h3>
                         <p>{{ project.description|truncatewords_html:20 }}</p>
-                        <a href="{% url 'Project-Detail' pk=project.id %}" class="btn-card">Leer</a> 
-                        <a class="fas fa-file-download float-right" href="{% url 'Home' %}"></a>
+                        <a href="{% url 'Project-Detail' pk=project.id %}" class="btn-card">Leer</a>   
+                        <a class="fas fa-file-download float-right" href="{% url 'Project-Info-Download' pk=project.id %}" target="_blank"></a>
                     </div>
                 </div>
             </div>
