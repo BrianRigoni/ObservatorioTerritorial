@@ -8,7 +8,7 @@
 
 {% block content %}
     <a class="btn-card ml-2 pb-2 pt-2 pl-4 pr-4" href="{% url 'Project-Create' %}">
-        <i class="nav-icon fa fa-plus-square-o mr-2"></i>
+        <i class="nav-icon far fa-plus-square mr-2"></i>
         Nueva
     </a>
 
@@ -26,7 +26,7 @@
                         <h3>{{ project.name }}</h3>
                         <p>{{ project.description|truncatewords_html:20 }}</p>
                         <a href="{% url 'Project-Detail' pk=project.id %}" class="btn-card">Leer</a> 
-                        <a class="fas fa-file-download" href="{% url 'Home' %}"></a>
+                        <a class="fas fa-file-download float-right" href="{% url 'Home' %}"></a>
                     </div>
                 </div>
             </div>

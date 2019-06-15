@@ -156,10 +156,11 @@ h1 {
     color: #f0f0f0;
     margin: 0;
 }
-.card-primary:not(.card-outline) .card-header, .nav-link.active {
+.card-primary:not(.card-outline) .card-header, .nav-link.active,
+.page-item.active a{
     background-color: #20B7BD !important;
 } 
-.card-primary.card-outline {
+.page-item.active a, .card-primary.card-outline {
     border-color: #20B7BD !important;
 }
 /*
@@ -264,12 +265,12 @@ h1 {
  *  ---------
  */
 .btn-primary {
-    background-color: #3c7fbe;
-    border-color: #3c7fbe;
+    background-color: #20B7BD;
+    border-color: #20B7BD;
 }
 .btn-primary:hover {
-    background-color: #2e6191;
-    border-color: #2e6191;
+    background-color: orange;
+    border-color: orange;
 }
 .btn-social {
     margin-bottom: 3%;
