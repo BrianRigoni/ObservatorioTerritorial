@@ -21,7 +21,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
     template_name = 'projects/project-form.html'
     success_url = 'projects/project-list.html'
     model = Project
-    fields = ('name', 'description', 'background', 'responsible')
+    fields = ('name', 'description', 'background', 'responsible', 'members')
 
 
 class ProjectDetailView(LoginRequiredMixin, DetailView):

@@ -63,6 +63,11 @@
           </div>
           <input id="id_password2" name="password2" type="password" class="form-control" placeholder="Confirmar contraseña">
         </div>
+        <ul>
+          {% for field in form %}
+            {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+          {% endfor %}
+        </ul>
         
         <div class="row">
           <div class="col-md-8">

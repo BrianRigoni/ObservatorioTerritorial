@@ -163,6 +163,9 @@ h1 {
 .page-item.active a, .card-primary.card-outline {
     border-color: #20B7BD !important;
 }
+form > * {
+    margin-top: 1rem !important;
+}
 /*
  *   Lockscreen Page
  *  -----------------

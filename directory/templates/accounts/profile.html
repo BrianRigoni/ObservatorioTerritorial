@@ -192,42 +192,42 @@
                       
                       <div class="col-md-12 mb-4">
                         <label>Nombres</label>
-                        <input type="text" class="form-control" id="inputName" value="{{user.researcher.names}}">
+                        <input type="text" class="form-control" name="names" id="id_names" value="{{ user.researcher.names }}">
                       </div>
 
                       <div class="col-md-12 mb-4">
                         <label>Apellidos</label>
-                        <input type="text" class="form-control" id="inputName2" value="{{user.researcher.surnames}}">
+                        <input type="text" class="form-control" name="surnames" id="id_surames" value="{{ user.researcher.surnames }}">
+                      </div>
+
+                      <div class="col-md-12 mb-4">
+                        <label>Ocupación</label>
+                        <input type="text" class="form-control" name="occupation" id="id_ocupation" value="{{ user.researcher.occupation }}">
                       </div>
 
                       <div class="col-md-12 mb-4">
                         <label>Correo electrónico</label>
-                        <input type="email" class="form-control" id="id_email" value="{{user.email}}">
+                        <input type="email" class="form-control" name="email" id="id_email" value="{{ user.email }}">
                       </div>
 
                       <div class="col-md-12 mb-4">
                         <label>Ubicación</label>
-                        <input type="text" class="form-control" id="id_location" value="{{user.researcher.location}}">
+                        <input type="text" class="form-control" name="location" id="id_location" value="{{ user.researcher.location }}">
                       </div>
 
                       <div class="col-md-12 mb-4">
                         <label>Educación</label>
-                        <textarea class="form-control" id="id_education" value="{{user.researcher.education}}"></textarea>
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Experiencia</label>
-                        <textarea class="form-control" id="inputExperience" value="{{user.researcher.experience}}"></textarea>
+                        <textarea class="form-control" name="education" id="id_education">{{ user.researcher.education }}</textarea>
                       </div>
 
                       <div class="col-md-12 mb-4">
                         <label>Habilidades</label>
-                        <textarea class="form-control" id="inputSkills" value="{{user.skills}}"></textarea>
+                        <textarea class="form-control" name="skills" id="id_skills">{{ user.researcher.skills }}</textarea>
                       </div>
                       
                       <div class="col-md-12 mb-4">
                         <label>Notas</label>
-                        <textarea class="form-control" id="inputSkills" value="{{user.researcher.notes}}"></textarea>
+                        <textarea class="form-control" name="" id="id_notes">{{ user.researcher.notes }}</textarea>
                       </div>
 
                       <div class="col-sm-offset-2 col-md-12">
