@@ -141,8 +141,8 @@ class ProjectDownload(LoginRequiredMixin, View):
         # miembros
         members_subt = Paragraph('<font size="20">Miembros</font>', title_style)
         doc_content.append(members_subt)
-        if project.researchers:
-            for researcher in project.researchers.all():
+        if project.members:
+            for researcher in project.members.all():
                 member_text = Paragraph(f'<font size="14"> - {researcher}</font>', normal_style)
                 doc_content.append(member_text)
                 doc_content.append(Spacer(1, .2 * inch))
