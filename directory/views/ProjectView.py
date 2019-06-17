@@ -9,8 +9,14 @@ from django.views.generic.base import View
 from directory.models import Project, Researcher, Publication
 from directory.forms.project_form import ProjectForm
 
-from reportlab.pdfgen import canvas 
-from io import BytesIO 
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from reportlab.platypus import Paragraph, Frame, Spacer, Image, Table, TableStyle, SimpleDocTemplate
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
+from reportlab.pdfgen import canvas
+from io import BytesIO
 
 
 class ProjectList(LoginRequiredMixin, ListView):
@@ -82,37 +88,91 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
 class ProjectDownload(LoginRequiredMixin, View):
     login_url = 'SignIn'
 
-    def get(self, request, pk):
-        project = Project.objects.get(pk=pk) # obtengo la publicacion sobre la cual se quiere descargar el pdf de la info
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{project.name}-autogenerado.pdf"'
-        buffer = BytesIO()
-        project_pdf = canvas.Canvas(buffer)
-        project_pdf.setFont('Helvetica', 16)
-        project_pdf.drawString(230, 1000, project.name) # titulo del pdf 
-        project_pdf.setFont('Helvetica', 14) # cambio de fuente para el resto del pdf
-        # subtitulos con la fuente helvetica 14  
-        project_pdf.drawString(230, 960, "Antecedentes de la linea")
-        project_pdf.drawString(230, 660, "Resumen de la linea")
-        project_pdf.drawString(230, 460, "Miembros")
-        # contenido de los subtitulos
-        project_pdf.setFont('Helvetica', 12)
-        # antecedentes
-        project_pdf.drawString(150, 950, project.background)
-        # resumen 
-        project_pdf.drawString(150, 650, project.description)
-        # miembros
-        # y_members = 450
-        # for researcher in project.researchers.all():
-        #     project_pdf.drawString(150, y_members, researcher)
-        #     y_members -= 15
+    def validate_project_data(self, value):
+        if value:
+            return value
+        return "Sin información."
 
-        project_pdf.showPage()
-        project_pdf.save()
-        project_pdf = buffer.getvalue()
+    def generate_pdf(self, project):
+        pass
+
+    def get(self, request, pk):
+        # obtengo la publicacion sobre la cual se quiere descargar el pdf de la info
+        project = Project.objects.get(pk=pk)
+        publications = Publication.objects.filter(project=project)  # obtengo las publicaciones de la investigacion
+        # declaro el tipo de contenido del response
+        pdf_name = f'{project.name}-autogenerado.pdf'
+        response = HttpResponse(content_type='application/pdf')
+        # nombre del archivo que va a ser devuelto
+        response['Content-Disposition'] = f'attachment; filename="{pdf_name}"'
+        # documento
+        buffer = BytesIO()
+        pdf_doc = SimpleDocTemplate(buffer, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+        # variables de la investigacion
+        background = self.validate_project_data(project.background)
+        description = self.validate_project_data(project.description)
+        # members y publications son querysets, se evaluan luego para un for
+        doc_content = []
+        styles = getSampleStyleSheet()
+        title_style = styles["Title"]
+        normal_style = styles["Normal"]
+
+        # secciones del pdf
+
+        # titulo
+        title = Paragraph(f'<font size="24">{project.name}</font>', title_style)
+        doc_content.append(title)
+        doc_content.append(Spacer(1, .7 * inch))
+
+        # antecedentes de la linea
+        background_subt = Paragraph('<font size="20">Antecedentes de la Línea</font>', title_style)
+        doc_content.append(background_subt)
+        background_text = Paragraph(f'<font size="14">{background}</font>', normal_style)
+        doc_content.append(background_text)
+        doc_content.append(Spacer(1, .5 * inch))
+
+        # resumen de la linea
+        description_subt = Paragraph('<font size="20">Resumen de la Línea</font>', title_style)
+        doc_content.append(description_subt)
+        description_text = Paragraph(f'<font size="14">{description}</font>', normal_style)
+        doc_content.append(description_text)
+        doc_content.append(Spacer(1, .5 * inch))
+
+        # miembros
+        members_subt = Paragraph('<font size="20">Miembros</font>', title_style)
+        doc_content.append(members_subt)
+        if project.researchers:
+            for researcher in project.researchers.all():
+                member_text = Paragraph(f'<font size="14"> - {researcher}</font>', normal_style)
+                doc_content.append(member_text)
+                doc_content.append(Spacer(1, .2 * inch))
+
+        else:
+            member_text = Paragraph('<font size="14"> No hay información de los miembros.</font>', normal_style)
+            doc_content.append(member_text, normal_style)
+
+        doc_content.append(Spacer(1, .5 * inch))
+
+        # publicaciones
+        publications_subt = Paragraph('<font size="20">Publicaciones</font>', title_style)
+        doc_content.append(publications_subt)
+        if publications:
+            for publication in publications:
+                publication_text = Paragraph(f'<font size="14"> - { publication }</font>', normal_style)
+                doc_content.append(publication_text)
+                doc_content.append(Spacer(1, .2 * inch))
+        else:
+            publication_text = Paragraph('<font size="14"> Sin publicaciones.</font>', normal_style)
+            doc_content.append(publication_text)
+
+        doc_content.append(Spacer(1, .5 * inch))
+
+        # contenido del pdf finalizado, se devuelve al usuario
+        pdf_doc.build(doc_content)
+        response.write(buffer.getvalue())
         buffer.close()
-        response.write(project_pdf)
         return response
+
 
 
 
