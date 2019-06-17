@@ -1,15 +1,34 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from directory.models import Publication
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView, View
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 from directory.models import Publication, Author, Researcher, Genre, Project
 from django.shortcuts import render, redirect
 from directory.forms import PublicationForm
 
 
-class PublicationCreateView(LoginRequiredMixin, CreateView):
+class PublicationList(LoginRequiredMixin, ListView):
     login_url = 'SignIn'
     model = Publication
-    template_name = 'publications/publication-create.html'
+    template_name = 'publications/publications.html'
+    context_object_name = 'publications'
+
+    def get(self, request, *args, **kwargs):
+        researchers = Researcher.objects.all()
+        genres      = Genre.objects.all()
+        projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
+        publications = Publication.objects.all()
+
+        context_dict = {'researchers': researchers, 'genres': genres, 
+                        'projects': projects, 'publications': publications}
+        return render(request, self.template_name, context=context_dict)
+
+
+class PublicationCreate(LoginRequiredMixin, CreateView):
+    login_url = 'SignIn'
+    template_name = 'publications/publication.html'
+    form_class = PublicationForm
+    success_url = 'publication_list'
 
     def get(self, request, *args, **kwargs):
         researchers = Researcher.objects.all()
@@ -38,33 +57,20 @@ class PublicationCreateView(LoginRequiredMixin, CreateView):
                 publication.authors.add(researcher, through_defaults={'order': i})
                 i += 1
             
-            return redirect('Publication-List')
+            return redirect('publication_list')
         else:
             form = PublicationForm()
         return render(request, self.template_name, {'form': form})
 
 
-class PublicationsListView(LoginRequiredMixin, ListView):
+class PublicationUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'SignIn'
     model = Publication
-    template_name = 'publications/publication-list.html'
-
-    def get(self, request, *args, **kwargs):
-        researchers = Researcher.objects.all()
-        genres      = Genre.objects.all()
-        projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
-        publications = Publication.objects.all()
-
-        context_dict = {'researchers': researchers, 'genres': genres, 
-                        'projects': projects, 'publications': publications}
-        return render(request, self.template_name, context=context_dict)
+    template_name = 'publications/publication.html'
+    form_class = PublicationForm
+    success_url = 'publication_list'
 
 
-class PublicationUpdateView(LoginRequiredMixin, UpdateView):
+""" class PublicationDelete(LoginRequiredMixin, DeleteView):
     login_url = 'SignIn'
-    model = Publication
-
-
-class PublicationDeleteView(LoginRequiredMixin, DeleteView):
-    login_url = 'SignIn'
-    model = Publication
+    model = Publication """

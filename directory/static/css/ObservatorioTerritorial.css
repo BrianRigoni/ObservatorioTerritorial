@@ -157,14 +157,17 @@ h1 {
     margin: 0;
 }
 .card-primary:not(.card-outline) .card-header, .nav-link.active,
-.page-item.active a{
+.page-item.active a {
     background-color: #20B7BD !important;
 } 
 .page-item.active a, .card-primary.card-outline {
     border-color: #20B7BD !important;
 }
-form > * {
-    margin-top: 1rem !important;
+.modal-body {
+    margin-top: 0;
+}
+.modal-body label ~ label, .modal-body input[type="file"], .modal-footer {
+    margin-top: 1rem;
 }
 /*
  *   Lockscreen Page
@@ -267,14 +270,6 @@ form > * {
  *   General
  *  ---------
  */
-.btn-primary {
-    background-color: #20B7BD;
-    border-color: #20B7BD;
-}
-.btn-primary:hover {
-    background-color: orange;
-    border-color: orange;
-}
 .btn-social {
     margin-bottom: 3%;
     height: 35px;
