@@ -116,6 +116,8 @@ class ProjectDownload(LoginRequiredMixin, View):
         styles = getSampleStyleSheet()
         title_style = styles["Title"]
         normal_style = styles["Normal"]
+        normal_style.alignment = TA_JUSTIFY 
+        
 
         # secciones del pdf
 
