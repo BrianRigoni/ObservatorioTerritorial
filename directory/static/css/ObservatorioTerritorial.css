@@ -297,3 +297,7 @@ h1 {
 .btn-facebook:active {
     outline: none;
 }
+
+.select2-selection__choice {
+    background-color: #5897fb !important;
+}

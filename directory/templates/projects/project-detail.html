@@ -32,10 +32,25 @@
                 </div>
                 <div class="row">
                     <h1>Publicaciones</h1>
-                    {% if publications != None %}
+                    {% if publications  %}
                         <ul>
                         {% for item in publications %}
                             <li><a href="/{{item.document.url}}" target="_blank"> {{ item }} </a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="badge badge-dark ml-3">
+                            Sin información
+                        </span>
+                    {% endif %}   
+                </div>
+
+                 <div class="row">
+                    <h1>Miembros</h1>
+                    {% if members %}
+                        <ul>
+                        {% for item in members %}
+                            <li>{{ item }}</li>
                         {% endfor %}
                         </ul>
                     {% else %}

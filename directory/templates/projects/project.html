@@ -28,7 +28,7 @@
                 </select>
                 
                 <label>Miembros</label>
-                <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members">
+                <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members" required>
                     {% for item in researchers %}
                         <option value="{{ item.id }}"> {{ item }} </option>
                     {% endfor %}

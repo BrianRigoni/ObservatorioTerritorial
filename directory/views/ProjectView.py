@@ -72,8 +72,8 @@ class ProjectDetail(LoginRequiredMixin, DetailView):
     def get(self, request, pk):
         project = Project.objects.get(pk=pk)
         publications = Publication.objects.filter(project=project)
-        
-        context_dict = {'project': project, 'publications': publications}
+        members = project.members.all()
+        context_dict = {'project': project, 'publications': publications, 'members': members}
         return render(request, self.template_name, context=context_dict)
 
 
@@ -117,7 +117,7 @@ class ProjectDownload(LoginRequiredMixin, View):
         title_style = styles["Title"]
         normal_style = styles["Normal"]
         normal_style.alignment = TA_JUSTIFY 
-        
+
 
         # secciones del pdf
 
