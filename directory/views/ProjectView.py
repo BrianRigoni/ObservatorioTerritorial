@@ -105,7 +105,6 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
             project.description = desc
             project.background = backg
             project.responsible = resp
-            
             project.members.clear()  # elimino los miembros anteriores de la tabla manytomany
 
             for member in members:

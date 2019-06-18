@@ -26,15 +26,23 @@
                 <label>Responsable</label>
                 <select class="selectResp" style="width: 466px;" name="responsible" id="id_responsible">
                     {% for item in researchers %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" 
+                        {% if item == project.responsible %} selected="selected"{% endif %}>
+                            {{ item }}
+                        </option>
                     {% endfor %}
                 </select>
                 
                 <label>Miembros</label>
+                {% comment %} Se dejan como seleccionados los que ya pertenecen a la investigacion {% endcomment %}
                 <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members" required>
-                    {% for item in researchers %}
-                        <option value="{{ item.id }}"> {{ item }} </option>
+                    {% for item in researchers %} 
+                        <option value="{{item.id}}" 
+                        {% if item in project.members.all %} selected="selected"{% endif %}> 
+                            {{item}}
+                        </option>
                     {% endfor %}
+
                 </select> 
                     
                 <div class="modal-footer pb-0">
