@@ -46,7 +46,6 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     def post(self, request, *args, **kwargs):
         form    = ProjectForm(request.POST)
         members = request.POST.getlist('members')
-
         if form.is_valid():
             name     = form.cleaned_data.get('name')
             desc     = form.cleaned_data.get('description')
@@ -81,29 +80,38 @@ class ProjectDetail(LoginRequiredMixin, DetailView):
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'SignIn'
     model = Project
-    template_name = 'projects/project.html'
+    template_name = 'projects/project-update.html'
     form_class = ProjectForm
     success_url = 'project_list'
 
     def get(self, request, pk):
         project = Project.objects.get(pk=pk)
-        members = project.members.all()
-        context_dict = {'project': project, 'members': members}
+        researchers = Researcher.objects.all()
+        context_dict = {'project': project, 'researchers': researchers}
         return render(request, self.template_name, context=context_dict)
     
-    def post(self, request, *args, **kwargs):
+    def post(self, request, pk):
         form = ProjectForm(request.POST)
         members = request.POST.getlist('members')
+
         if form.is_valid():
             name     = form.cleaned_data.get('name')
             desc     = form.cleaned_data.get('description')
             backg    = form.cleaned_data.get('background')
             resp     = form.cleaned_data.get('responsible')
-            project = Project.objects.get(pk=project.id)
+            
+            project = Project.objects.get(pk=pk)
+            project.name = name
+            project.description = desc
+            project.background = backg
+            project.responsible = resp
+            
             project.members.clear()  # elimino los miembros anteriores de la tabla manytomany
+
             for member in members:
-                researcher = Researcher.objects.create(pk=member)
+                researcher = Researcher.objects.get(pk=member)
                 project.members.add(researcher)
+            project.save()
             return redirect('project_detail', pk=project.id)
         else:
             form = ProjectForm()
