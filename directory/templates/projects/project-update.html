@@ -14,14 +14,10 @@
                 <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre" value="{{project.name}}">
 
                 <label>Descripción</label>
-                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción">
-                    {{ project.description }}
-                </textarea>
+                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción">{{project.description}}</textarea>
                 
                 <label>Antecedentes</label>
-                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes">
-                    {{ project.background }}
-                </textarea>
+                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes">{{project.background}}</textarea>
 
                 <label>Responsable</label>
                 <select class="selectResp" style="width: 466px;" name="responsible" id="id_responsible">
