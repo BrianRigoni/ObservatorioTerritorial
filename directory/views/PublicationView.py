@@ -78,14 +78,12 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
             name     = form.cleaned_data.get('name')
             date     = form.cleaned_data.get('date')
             genre    = form.cleaned_data.get('genre')
-            document = form.cleaned_data.get('document')
             project  = form.cleaned_data.get('project')
 
             publication          = Publication.objects.get(pk=pk)
             publication.name     = name
             publication.date     = date
             publication.genre    = genre
-            publication.document = document
             publication.project  = project
             publication.authors.clear()
 
