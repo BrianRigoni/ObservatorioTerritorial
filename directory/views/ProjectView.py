@@ -46,7 +46,6 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     def post(self, request, *args, **kwargs):
         form    = ProjectForm(request.POST)
         members = request.POST.getlist('members')
-
         if form.is_valid():
             name     = form.cleaned_data.get('name')
             desc     = form.cleaned_data.get('description')
@@ -59,10 +58,11 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
                 researcher = Researcher.objects.get(pk=memb)
                 project.members.add(researcher)
             
-            return redirect('project_list')
+            return redirect('project_detail', pk=project.id)
         else:
             form = ProjectForm()
         return render(request, self.template_name, {'form': form})
+
 
 class ProjectDetail(LoginRequiredMixin, DetailView):
     login_url = 'SignIn'
@@ -72,18 +72,49 @@ class ProjectDetail(LoginRequiredMixin, DetailView):
     def get(self, request, pk):
         project = Project.objects.get(pk=pk)
         publications = Publication.objects.filter(project=project)
-        
-        context_dict = {'project': project, 'publications': publications}
+        members = project.members.all()
+        context_dict = {'project': project, 'publications': publications, 'members': members}
         return render(request, self.template_name, context=context_dict)
 
 
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'SignIn'
     model = Project
-    template_name = 'projects/project.html'
+    template_name = 'projects/project-update.html'
     form_class = ProjectForm
     success_url = 'project_list'
 
+    def get(self, request, pk):
+        project = Project.objects.get(pk=pk)
+        researchers = Researcher.objects.all()
+        context_dict = {'project': project, 'researchers': researchers}
+        return render(request, self.template_name, context=context_dict)
+    
+    def post(self, request, pk):
+        form = ProjectForm(request.POST)
+        members = request.POST.getlist('members')
+
+        if form.is_valid():
+            name     = form.cleaned_data.get('name')
+            desc     = form.cleaned_data.get('description')
+            backg    = form.cleaned_data.get('background')
+            resp     = form.cleaned_data.get('responsible')
+            
+            project = Project.objects.get(pk=pk)
+            project.name = name
+            project.description = desc
+            project.background = backg
+            project.responsible = resp
+            project.members.clear()  # elimino los miembros anteriores de la tabla manytomany
+
+            for member in members:
+                researcher = Researcher.objects.get(pk=member)
+                project.members.add(researcher)
+            project.save()
+            return redirect('project_detail', pk=project.id)
+        else:
+            form = ProjectForm()
+        return render(request, self.template_name, {'form': form})
 
 class ProjectDownload(LoginRequiredMixin, View):
     login_url = 'SignIn'
@@ -116,6 +147,8 @@ class ProjectDownload(LoginRequiredMixin, View):
         styles = getSampleStyleSheet()
         title_style = styles["Title"]
         normal_style = styles["Normal"]
+        normal_style.alignment = TA_JUSTIFY 
+
 
         # secciones del pdf
 

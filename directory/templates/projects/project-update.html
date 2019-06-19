@@ -1,10 +1,9 @@
 <!-- Modal -->
 <div class="modal-dialog">
     <div class="modal-content">
-        <form role="form" action="{% url 'project_create' %}" method="post" enctype="multipart/form-data">
-
+        <form role="form" action="{% url 'project_update' pk=project.id %}" method="post" enctype="multipart/form-data">
         <div class="modal-header mt-1">
-            <h4 class="modal-title">Nueva investigación</h4>
+            <h4 class="modal-title">Editar investigación</h4>
             <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -12,26 +11,34 @@
         <div class="modal-body">
             {% csrf_token %}
                 <label>Nombre</label>
-                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
+                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre" value="{{project.name}}">
 
                 <label>Descripción</label>
-                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción"></textarea>
+                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción">{{project.description}}</textarea>
                 
                 <label>Antecedentes</label>
-                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes"></textarea>
+                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes">{{project.background}}</textarea>
 
                 <label>Responsable</label>
                 <select class="selectResp" style="width: 466px;" name="responsible" id="id_responsible">
                     {% for item in researchers %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" 
+                        {% if item == project.responsible %} selected="selected"{% endif %}>
+                            {{ item }}
+                        </option>
                     {% endfor %}
                 </select>
                 
                 <label>Miembros</label>
+                {% comment %} Se dejan como seleccionados los que ya pertenecen a la investigacion {% endcomment %}
                 <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members" required>
-                    {% for item in researchers %}
-                        <option value="{{ item.id }}"> {{ item }} </option>
+                    {% for item in researchers %} 
+                        <option value="{{item.id}}" 
+                        {% if item in project.members.all %} selected="selected"{% endif %}> 
+                            {{item}}
+                        </option>
                     {% endfor %}
+
                 </select> 
                     
                 <div class="modal-footer pb-0">
