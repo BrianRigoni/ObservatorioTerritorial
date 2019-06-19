@@ -3,7 +3,7 @@
     <div class="modal-content">
         <form role="form" action="{% url 'project_update' pk=project.id %}" method="post" enctype="multipart/form-data">
         <div class="modal-header mt-1">
-            <h4 class="modal-title">Editar investigación</h4>
+            <h4 class="modal-title">Modificar investigación</h4>
             <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -40,12 +40,11 @@
                     {% endfor %}
 
                 </select> 
-                    
-                <div class="modal-footer pb-0">
-                    <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
-                    <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
-                </div>
             </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
         </div>
     </div>
 </div>

@@ -34,7 +34,7 @@
                         <td>{{ item.project }}</td>
                         <td>
                             {% for res in item.authors.all %}
-                                <a class="mr-2" href="#">{{res}}</a>
+                                <div><a class="mr-2" href="#">{{res}}</a></div>
                             {% endfor %}
                         </td>
                         <td>{{ item.date }}</td>

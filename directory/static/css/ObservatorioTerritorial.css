@@ -169,10 +169,13 @@ h1 {
 .modal-body label ~ label, .modal-body input[type="file"], .modal-footer {
     margin-top: 1rem;
 }
-tbody > tr > td  a.fas:hover {
+tbody > tr > td a.fas:hover {
     font-size: larger;
+    color: rgb(33, 37, 41);
 }
-
+tbody > tr > td a.fas {
+    color: rgb(33, 37, 41);
+}
 /*
  *   Lockscreen Page
  *  -----------------

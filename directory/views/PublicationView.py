@@ -14,16 +14,6 @@ class PublicationList(LoginRequiredMixin, ListView):
     template_name = 'publications/publications.html'
     context_object_name = 'publications'
 
-    def get(self, request, *args, **kwargs):
-        researchers = Researcher.objects.all()
-        genres      = Genre.objects.all()
-        projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
-        publications = Publication.objects.all()
-
-        context_dict = {'researchers': researchers, 'genres': genres, 
-                        'projects': projects, 'publications': publications}
-        return render(request, self.template_name, context=context_dict)
-
 
 class PublicationCreate(LoginRequiredMixin, CreateView):
     login_url = 'SignIn'
@@ -70,6 +60,46 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'publications/publication-update.html'
     form_class = PublicationForm
     success_url = reverse_lazy('publication_list')
+
+    def get(self, request, pk):
+        publication = Publication.objects.get(pk=pk)
+        researchers = Researcher.objects.all()
+        genres      = Genre.objects.all()
+        projects    = Project.objects.all()
+        
+        context_dict = {'publication':publication, 'researchers': researchers, 'genres': genres, 'projects': projects}
+        return render(request, self.template_name, context=context_dict)
+
+    def post(self, request, pk):
+        form    = PublicationForm(request.POST, request.FILES)
+        authors = request.POST.getlist('authors')
+
+        if form.is_valid():
+            name     = form.cleaned_data.get('name')
+            date     = form.cleaned_data.get('date')
+            genre    = form.cleaned_data.get('genre')
+            document = form.cleaned_data.get('document')
+            project  = form.cleaned_data.get('project')
+
+            publication          = Publication.objects.get(pk=pk)
+            publication.name     = name
+            publication.date     = date
+            publication.genre    = genre
+            publication.document = document
+            publication.project  = project
+            publication.authors.clear()
+
+            i = 1
+            for author in authors:
+                researcher = Researcher.objects.get(pk=author)
+                publication.authors.add(researcher, through_defaults={'order': i})
+                i += 1
+            
+            publication.save()
+            return redirect('publication_list')
+        else:
+            form = PublicationForm()
+        return render(request, self.template_name, {'form': form})
 
 
 class PublicationDelete(LoginRequiredMixin, DeleteView):

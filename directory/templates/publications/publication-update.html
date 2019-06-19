@@ -39,7 +39,7 @@
                     {% endfor %}
                 </select> 
                     
-                <input type="file" name="document" required id="id_document" placeholder="Documento">
+                <input type="file" name="document" id="id_document" value="{{ publication.document }}" placeholder="Documento">
                     
                 <div class="modal-footer pb-0">
                     <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
