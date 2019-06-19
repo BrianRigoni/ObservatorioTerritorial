@@ -1,0 +1,67 @@
+<!-- Modal -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="{% url 'publication_create' %}" method="post" enctype="multipart/form-data">
+        
+        <div class="modal-header mt-1">
+            <h4 class="modal-title">Nueva publicación</h4>
+            <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+                <label>Nombre</label>
+                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
+
+                <label>Fecha</label>
+                <input class="form-control" type="date" name="date" maxlength="100" required id="id_date">
+                
+                <label>Género</label>
+                <select class="selectGen" style="width: 466px;" name="genre" required id="genres">
+                    {% for item in genres %}
+                        <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Investigación</label>
+                <select class="selectInv" style="width: 466px;" name="project" required id="projects">
+                    {% for item in projects %}
+                        <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+                </select>
+                
+                <label>Autores</label>
+                <select class="selectAuthors" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
+                    {% for item in researchers %}
+                        <option value="{{item.id}}"> {{ item }} </option>
+                    {% endfor %}
+                </select> 
+                    
+                <input type="file" name="document" required id="id_document" placeholder="Documento">
+                    
+                <div class="modal-footer pb-0">
+                    <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+                    <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.selectAuthors').select2({
+            placeholder: 'Seleccione autor/es',
+            width: 'resolve'
+        });
+        $('.selectInv').select2({
+            placeholder: 'Seleccione autor/es',
+            width: 'resolve'
+        });
+        $('.selectGen').select2({
+            placeholder: 'Seleccione autor/es',
+            width: 'resolve'
+        });
+    });
+</script>

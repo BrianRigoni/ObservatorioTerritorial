@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from directory.models import Publication
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from directory.models import Publication, Author, Researcher, Genre, Project
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from directory.forms import PublicationForm
 
 
@@ -26,9 +27,9 @@ class PublicationList(LoginRequiredMixin, ListView):
 
 class PublicationCreate(LoginRequiredMixin, CreateView):
     login_url = 'SignIn'
-    template_name = 'publications/publication.html'
+    template_name = 'publications/publication-create.html'
     form_class = PublicationForm
-    success_url = 'publication_list'
+    success_url = reverse_lazy('publication_list')
 
     def get(self, request, *args, **kwargs):
         researchers = Researcher.objects.all()
@@ -66,11 +67,13 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
 class PublicationUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'SignIn'
     model = Publication
-    template_name = 'publications/publication.html'
+    template_name = 'publications/publication-update.html'
     form_class = PublicationForm
-    success_url = 'publication_list'
+    success_url = reverse_lazy('publication_list')
 
 
-""" class PublicationDelete(LoginRequiredMixin, DeleteView):
+class PublicationDelete(LoginRequiredMixin, DeleteView):
     login_url = 'SignIn'
-    model = Publication """
+    model = Publication
+    template_name = 'publications/publication-delete.html'
+    success_url = reverse_lazy('publication_list')

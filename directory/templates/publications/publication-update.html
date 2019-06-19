@@ -1,10 +1,10 @@
 <!-- Modal -->
 <div class="modal-dialog">
     <div class="modal-content">
-        <form role="form" action="{% url 'publication_create' %}" method="post" enctype="multipart/form-data">
-
+        <form role="form" action="{% url 'publication_update' pk=publication.id %}" method="post" enctype="multipart/form-data">
+        
         <div class="modal-header mt-1">
-            <h4 class="modal-title">Nueva publicación</h4>
+            <h4 class="modal-title">Modificar publicación</h4>
             <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -12,29 +12,30 @@
         <div class="modal-body">
             {% csrf_token %}
                 <label>Nombre</label>
-                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
+                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ publication.name }}">
 
                 <label>Fecha</label>
-                <input class="form-control" type="date" name="date" maxlength="100" required id="id_date">
+                <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" value="{{ publication.date }}">
                 
                 <label>Género</label>
-                <select class="selectGen" style="width: 466px;" name="genre" required id="genres">
+                <select class="selectGen" style="width: 466px;" name="genre" required id="genres" value="{{ publication.genre }}">
                     {% for item in genres %}
                         <option value="{{item.id}}">{{item}}</option>
                     {% endfor %}
                 </select>
 
                 <label>Investigación</label>
-                <select class="selectInv" style="width: 466px;" name="project" required id="projects">
+                <select class="selectInv" style="width: 466px;" name="project" required id="projects" >
+                    <option value="{{ publication.project.id }}" selected>{{ publication.project }}</option>
                     {% for item in projects %}
-                        <option value="{{item.id}}">{{item}}</option>
+                        <option value="{{ item.id }}">{{ item }}</option>
                     {% endfor %}
                 </select>
                 
                 <label>Autores</label>
                 <select class="selectAuthors" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
-                    {% for item in researchers %}
-                        <option value="{{item.id}}"> {{ item }} </option>
+                    {% for item in publication.authors.all %}
+                        <option value="{{ item.id }}" selected> {{ item }} </option>
                     {% endfor %}
                 </select> 
                     

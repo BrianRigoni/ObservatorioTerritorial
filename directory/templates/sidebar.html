@@ -18,7 +18,7 @@
                 {% endthumbnail %}
             </div>
             <div class="info brand-text pagetext-color"> 
-                <a href="{% url 'Profile' %}" class="d-block mb-2">{{user.username}}</a>
+                <a href="{% url 'Profile' %}" class="d-block mb-2">{{ user.username }}</a>
                 <i class="fas fa-sign-out-alt"></i>
                 <a href="{% url 'Logout' %}">Cerrar Sesión</a>
             </div>
@@ -80,7 +80,7 @@
                 <i class="nav-icon fa fa-th"></i>
                 <p>
                 Investigaciones
-                <span class="right badge badge-danger">New</span>
+                {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
             </a>
             </li>
@@ -98,19 +98,20 @@
                 <i class="nav-icon far fa-calendar"></i>
                 <p>
                 Calendario
-                <span class="badge badge-info right">2</span>
+                <span class="badge badge-info right">Pronto</span>
                 </p>
             </a>
             </li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item {% comment %} has-treeview {% endcomment %}">
             <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-envelope-o"></i>
                 <p>
                 Correo
-                <i class="fa fa-angle-left right"></i>
+                <span class="badge badge-info right">Pronto</span>
+                {% comment %} <i class="fa fa-angle-left right"></i> {% endcomment %}
                 </p>
             </a>
-            <ul class="nav nav-treeview">
+            {% comment %} <ul class="nav nav-treeview">
                 <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
@@ -129,7 +130,7 @@
                     <p>Read</p>
                 </a>
                 </li>
-            </ul>
+            </ul> {% endcomment %}
             </li>
             <li class="nav-item">
             <a href="{% url 'publication_list' %}" class="nav-link">

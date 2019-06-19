@@ -4,7 +4,7 @@ from django.contrib import admin
 from directory.views import (SignInView, SignUpView, LogoutView, 
     LockscreenView, ProfileView, HomeView, 
     ProjectCreate, ProjectDetail, ProjectUpdate, ProjectList, ProjectDownload,
-    PublicationList, PublicationCreate, PublicationUpdate)
+    PublicationList, PublicationCreate, PublicationUpdate, PublicationDelete)
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,4 +27,5 @@ urlpatterns = [
     path('publicaciones/',                    PublicationList.as_view(),   name="publication_list"),
     path('nueva_publicacion/',                PublicationCreate.as_view(), name="publication_create"),
     path('modificar_publicacion/<int:pk>/',   PublicationUpdate.as_view(), name="publication_update"),
+    path('eliminar_publicacion/<int:pk>/',    PublicationDelete.as_view(), name="publication_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

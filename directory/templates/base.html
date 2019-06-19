@@ -1,81 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    {# Bloque de meta #}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Language" value="es-AR" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" value="es-AR" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                
+        <title>Observatorio Territorial | {% block title %} Inicio {% endblock title %}</title>
+
+        <!-- Bootstrap 4.3.1 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'fontawesome-web/css/all.css' %}">
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+        <!-- Google Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        
+        <link rel="stylesheet" href="{% static 'css/Template.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ObservatorioTerritorial.css' %}">
+
+        {% block csspage %}
+        {% endblock csspage %}
+    </head>
+    <body class="hold-transition sidebar-mini pr-0 {% block bodyclass %}{% endblock bodyclass %}">
+    
+        {% if request.path != "/ingreso/" and request.path != "/registro/" and request.path != "/reingreso/" %}
+            <!-- Navbar -->
+            {% include "navbar.html" %}
+
+            <!-- Sidebar -->
+            {% include "sidebar.html" %}
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+
+                <!-- Main content -->
+                <section class="content pt-4">
+                    <div class="container-fluid">
+                        {% block content %}
+                        {% endblock content %}
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+    
+            </div>
+            <!-- /.content-wrapper -->
             
-    {# Bloque de titulo #}
-    <title>Observatorio Territorial | {% block title %} Inicio {% endblock title %}</title>
-
-    {# Bloque de estilos css #}
-    <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'fontawesome-web/css/all.css' %}">
-    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+            <footer class="main-footer">
+                <div class="text-center">  
+                    <b>Copyright &copy; 2019 Brian Rigoni - Ignacio Perez.</b>
+                </div>
+            </footer>
     
-    <link rel="stylesheet" href="{% static 'css/Template.css' %}">
-    <link rel="stylesheet" href="{% static 'css/ObservatorioTerritorial.css' %}">
-
-    {% block csspage %}
-    {% endblock csspage %}
-</head>
-<body class="hold-transition sidebar-mini pr-0 {% block bodyclass %}{% endblock bodyclass %}">
+        {% else %}
     
-    {% if request.path != "/ingreso/" and request.path != "/registro/" and request.path != "/reingreso/" %}
-      <!-- Navbar -->
-      {% include "navbar.html" %}
-
-      <!-- Sidebar -->
-      {% include "sidebar.html" %}
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-
-        <!-- Main content -->
-        <section class="content pt-4">
-          <div class="container-fluid">
-            {% block content %}
-            {% endblock content %}
-          </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
-      
-      <footer class="main-footer">
-        <div class="text-center">  
-          <b>Copyright &copy; 2019 Brian Rigoni - Ignacio Perez.</b> 
-          All rights reserved.
-        </div>
-      </footer>
-    {% else %}
-          {% block contentuser %}
-          {% endblock contentuser %}
-    {% endif %}
+            {% block contentuser %}
+            {% endblock contentuser %}
+    
+        {% endif %}
 
 
-   {% comment %}  <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar --> {% endcomment %}
+        <!-- jQuery 3 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- Bootstrap 4.3.1 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+        <script src="{% static 'js/adminlte.js' %}"></script>
 
-  {# bloque de scripts importados #}
-  <!-- jQuery 3 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <!-- Bootstrap 4.3.1 -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
-  <script src="{% static 'js/adminlte.js' %}"></script>
-
- {% comment %}  <script src="https://kit.fontawesome.com/7704a2dd62.js"></script> {% endcomment %}
-  {% block jspage %}
-  {% endblock jspage %}
-</body>
+        {% block jspage %}
+        {% endblock jspage %}
+    </body>
 </html>
