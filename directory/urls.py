@@ -21,7 +21,7 @@ urlpatterns = [
     path('investigaciones/',                  ProjectList.as_view(),       name="project_list"),
     path('nueva_investigacion/',              ProjectCreate.as_view(),     name="project_create"),
     path('modificar_investigacion/<int:pk>/', ProjectUpdate.as_view(),     name="project_update"),
-    path('eliminar_publicacion/<int:pk>/',    ProjectDelete.as_view(),     name="project_delete"),
+    path('eliminar_investigacion/<int:pk>/',  ProjectDelete.as_view(),   name="project_delete"),
     path('investigaciones/<int:pk>/',         ProjectDetail.as_view(),     name="project_detail"),
     path('investigacionespdf/<int:pk>',       ProjectDownload.as_view(),   name="Project-Info-Download"),
     
