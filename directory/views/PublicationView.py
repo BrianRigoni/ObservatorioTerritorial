@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 from directory.models import Publication, Author, Researcher, Genre, Project
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from directory.forms import PublicationForm
+from directory.forms import PublicationForm, PublicationUpdateForm
 
 
 class PublicationList(LoginRequiredMixin, ListView):
@@ -58,7 +58,7 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'SignIn'
     model = Publication
     template_name = 'publications/publication-update.html'
-    form_class = PublicationForm
+    form_class = PublicationUpdateForm
     success_url = reverse_lazy('publication_list')
 
     def get(self, request, pk):
@@ -71,7 +71,7 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
         return render(request, self.template_name, context=context_dict)
 
     def post(self, request, pk):
-        form    = PublicationForm(request.POST, request.FILES)
+        form    = PublicationUpdateForm(request.POST, request.FILES)
         authors = request.POST.getlist('authors')
 
         if form.is_valid():
