@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib import admin
 from directory.views import (SignInView, SignUpView, LogoutView, 
     LockscreenView, ProfileView, HomeView, 
-    ProjectCreate, ProjectDetail, ProjectUpdate, ProjectList, ProjectDownload,
+    ProjectCreate, ProjectDetail, ProjectUpdate, ProjectList, ProjectDownload, ProjectDelete,
     PublicationList, PublicationCreate, PublicationUpdate, PublicationDelete)
 
 from django.conf import settings
@@ -21,6 +21,7 @@ urlpatterns = [
     path('investigaciones/',                  ProjectList.as_view(),       name="project_list"),
     path('nueva_investigacion/',              ProjectCreate.as_view(),     name="project_create"),
     path('modificar_investigacion/<int:pk>/', ProjectUpdate.as_view(),     name="project_update"),
+    path('eliminar_publicacion/<int:pk>/',    ProjectDelete.as_view(),     name="project_delete"),
     path('investigaciones/<int:pk>/',         ProjectDetail.as_view(),     name="project_detail"),
     path('investigacionespdf/<int:pk>',       ProjectDownload.as_view(),   name="Project-Info-Download"),
     

@@ -64,11 +64,15 @@
                 </div>
             </div>
         </div>
-        <!-- solo el usuario responsable de la investigacion puede modificar sus datos -->
+        <!-- solo el usuario responsable de la investigacion puede modificar sus datos o borrar la investigacion -->
         {% if user.researcher.id == project.responsible.id %}
             <button type="button" onclick="return abrir_modal('{% url 'project_update' pk=project.id %}')" class="btn btn-primary ml-2">
             <i class="nav-icon far fa-edit mr-2"></i>
             Editar
+            </button>
+            <button type="button" onclick="return abrir_modal('{% url 'project_delete' pk=project.id %}')" class="btn btn-danger ml-2">
+            <i class="nav-icon far fa-cross mr-2"></i>
+            Eliminar
             </button>
         {% endif %}
         

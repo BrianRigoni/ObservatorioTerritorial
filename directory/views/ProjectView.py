@@ -1,10 +1,12 @@
 from django.http import request, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.base import View
+from django.urls import reverse_lazy
+
 
 from directory.models import Project, Researcher, Publication
 from directory.forms.project_form import ProjectForm
@@ -118,6 +120,14 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
         else:
             form = ProjectForm()
         return render(request, self.template_name, {'form': form})
+
+
+class ProjectDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'SignIn'
+    model = Project
+    template_name = 'projects/project-delete.html'
+    success_url = reverse_lazy('project_list')
+
 
 
 class ProjectDownload(LoginRequiredMixin, View):

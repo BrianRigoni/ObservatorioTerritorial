@@ -1,0 +1,22 @@
+<!-- Modal -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="{% url 'project_delete' pk=project.id %}" method="post">
+        
+        <div class="modal-header mt-1">
+            <h4 class="modal-title">Confirmación</h4>
+            <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+                <p>La investigacion<b><i>'{{ project.name }}'</i></b> será eliminada.</p>  
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" name="submit" value="Confirmar" class="btn btn-primary">
+        </div>
+    </div>
+</div>
