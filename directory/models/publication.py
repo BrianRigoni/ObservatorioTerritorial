@@ -2,7 +2,7 @@ from django.db import models
 from .genre import Genre
 from .project import Project
 from .researcher import Researcher
-
+from django.contrib.auth.models import User
 
 class Publication(models.Model):
     name     = models.CharField(max_length=100, null=False, blank=False)
@@ -11,6 +11,7 @@ class Publication(models.Model):
     document = models.FileField(upload_to='publicaciones')
     authors  = models.ManyToManyField(Researcher, through='Author', related_name='publicationAuthor')
     project  = models.ForeignKey(Project, on_delete=models.DO_NOTHING, related_name='publicationProject')
+    created_by = models.ForeignKey(User, null=False, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name        = "Publicación"

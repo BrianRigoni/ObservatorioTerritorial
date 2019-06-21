@@ -6,9 +6,9 @@ class PublicationForm(forms.ModelForm):
     
     class Meta:
         model = Publication 
-        fields = ('name', 'date', 'genre', 'document', 'authors', 'project')
+        fields = ('name', 'date', 'genre', 'document', 'authors', 'project', 'created_by')
 
 class PublicationUpdateForm(forms.ModelForm):
     class Meta:
         model = Publication
-        fields = ('name', 'date', 'genre', 'authors', 'project')
+        fields = ('name', 'date', 'genre', 'authors', 'project', 'created_by')

@@ -11,6 +11,7 @@
         </div>
         <div class="modal-body">
             {% csrf_token %}
+                <input type="hidden" value="{{ user.id }}" name="created_by" id="id_created_by"/>
                 <label>Nombre</label>
                 <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
 

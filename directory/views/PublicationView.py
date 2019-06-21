@@ -6,7 +6,7 @@ from directory.models import Publication, Author, Researcher, Genre, Project
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from directory.forms import PublicationForm, PublicationUpdateForm
-
+from django.contrib.auth.models import User
 
 class PublicationList(LoginRequiredMixin, ListView):
     login_url = 'SignIn'
@@ -34,13 +34,14 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
         authors = request.POST.getlist('authors')
 
         if form.is_valid():
-            name     = form.cleaned_data.get('name')
-            date     = form.cleaned_data.get('date')
-            genre    = form.cleaned_data.get('genre')
-            document = form.cleaned_data.get('document')
-            project  = form.cleaned_data.get('project')
+            name          = form.cleaned_data.get('name')
+            date          = form.cleaned_data.get('date')
+            genre         = form.cleaned_data.get('genre')
+            document      = form.cleaned_data.get('document')
+            project       = form.cleaned_data.get('project')
+            created_by    = form.cleaned_data.get('created_by')
 
-            publication = Publication.objects.create(name=name, date=date, genre=genre, document=document, project=project)
+            publication = Publication.objects.create(name=name, date=date, genre=genre, document=document, project=project, created_by=created_by)
 
             i = 1
             for author in authors:
@@ -66,7 +67,6 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
         researchers = Researcher.objects.all()
         genres      = Genre.objects.all()
         projects    = Project.objects.all()
-        
         context_dict = {'publication':publication, 'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
 
@@ -75,16 +75,17 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
         authors = request.POST.getlist('authors')
 
         if form.is_valid():
-            name    = form.cleaned_data.get('name')
-            date    = form.cleaned_data.get('date')
-            genre   = form.cleaned_data.get('genre')
-            project = form.cleaned_data.get('project')
-
-            publication          = Publication.objects.get(pk=pk)
-            publication.name     = name
-            publication.date     = date
-            publication.genre    = genre
-            publication.project  = project
+            name          = form.cleaned_data.get('name')
+            date          = form.cleaned_data.get('date')
+            genre         = form.cleaned_data.get('genre')
+            project       = form.cleaned_data.get('project')
+            created_by    = User.objects.get(pk=form.cleaned_data.get('created_by'))
+            publication             = Publication.objects.get(pk=pk)
+            publication.name        = name
+            publication.date        = date
+            publication.genre       = genre
+            publication.project     = project
+            publication.created_by  = created_by
             publication.authors.clear()
 
             i = 1
