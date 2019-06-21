@@ -45,6 +45,10 @@
     
             </div>
             <!-- /.content-wrapper -->
+
+            <div id="popup" class="modal fade" role="dialog">
+
+            </div>
             
             <footer class="main-footer">
                 <div class="text-center">  
@@ -62,10 +66,33 @@
 
         <!-- jQuery 3 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        
         <!-- Bootstrap 4.3.1 -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
         <script src="{% static 'js/adminlte.js' %}"></script>
+
+        <!-- Chosen -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
+        <script src="http://labo.tristan-jahier.fr/chosen_order/chosen.order.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css">
+
+        <script>
+            function abrir_modal(url)
+            {
+                $('#popup').load(url, function()
+                {
+                    $(this).modal('show');
+                });
+                return false;
+            }
+
+            function cerrar_modal()
+            {
+                $('#popup').modal('hide');
+                return false;
+            }
+        </script>
 
         {% block jspage %}
         {% endblock jspage %}

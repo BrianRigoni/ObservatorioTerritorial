@@ -18,7 +18,7 @@
                 {% endthumbnail %}
             </div>
             <div class="info brand-text pagetext-color"> 
-                <a href="{% url 'Profile' %}" class="d-block mb-2">{{ user.username }}</a>
+                <a href="{% url 'Profile' username=user.username %}" class="d-block mb-2">{{ user.username }}</a>
                 <i class="fas fa-sign-out-alt"></i>
                 <a href="{% url 'Logout' %}">Cerrar Sesión</a>
             </div>
@@ -140,13 +140,22 @@
                 </p>
             </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-sliders-h"></i>
                 <p>
                 Opciones
+                <i class="fa fa-angle-left right"></i>
                 </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a class="nav-link" onclick="return abrir_modal('{% url 'profile_update' pk=user.researcher.id %}')">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>Modificar perfil</p>
+                </a>
+                </li>
+            </ul>
             </li>
         {% else %}
             <li class="nav-item">

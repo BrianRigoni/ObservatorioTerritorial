@@ -13,24 +13,24 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  {% thumbnail user.researcher.profile_picture "200x200" crop="center" as im %}
+                  {% thumbnail researcher.profile_picture "200x200" crop="center" as im %}
                     <img src="/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="profile-user-img img-fluid" alt="Image profile">
                   {% endthumbnail %}
                 </div>
 
-                <h3 class="profile-username text-center">{{ user.username }}</h3>
+                <h3 class="profile-username text-center">{{ researcher.username }}</h3>
 
-                <p class="text-muted text-center">{{ user.researcher.occupation }}</p>
+                <p class="text-muted text-center">{{ researcher.occupation }}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Investigaciones</b> <a class="float-right">{{ user.researcher.project.count }}</a>
+                    <b>Investigaciones</b> <a class="float-right">{% comment %} {{ projects.count }} {% endcomment %}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Publicaciones</b> <a class="float-right">{{ user.researcher.publication.count }}</a>
+                    <b>Publicaciones</b> <a class="float-right">{% comment %} {{ publications.count }} {% endcomment %}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Amigos</b> <a class="float-right">13,287</a>
+                    <b>Amigos</b> <a class="float-right">14mill</a>
                   </li>
                 </ul>
 
@@ -48,27 +48,23 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <strong><i class="fa fa-book mr-1"></i> Educación</strong>
-                <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
-                </p>
+                <p class="text-muted">{{ researcher.education }}</p>
+                <hr>
+
+                <strong><i class="fas fa-university mr-1"></i> Institución</strong>
+                <p class="text-muted">{{ researcher.institution }}</p>
                 <hr>
 
                 <strong><i class="fa fa-map-marker mr-1"></i> Ubicación</strong>
-                <p class="text-muted">Ushuaia, Tierra del Fuego</p>
+                <p class="text-muted">{{ researcher.location }}</p>
                 <hr>
 
                 <strong><i class="fa fa-pencil mr-1"></i> Habilidades</strong>
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
+                <p class="text-muted">{{ researcher.skills }}</p>
                 <hr>
 
                 <strong><i class="fa fa-file-text-o mr-1"></i> Notas</strong>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">{{ researcher.notes }}</p>
               </div>
               <!-- /.card-body -->
             </div>
@@ -82,7 +78,6 @@
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Actividad</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Ajustes</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -184,57 +179,6 @@
                         <i class="fa fa-clock-o bg-gray"></i>
                       </li>
                     </ul>
-                  </div>
-                  <!-- /.tab-pane -->
-
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal ">
-                      
-                      <div class="col-md-12 mb-4">
-                        <label>Nombres</label>
-                        <input type="text" class="form-control" name="names" id="id_names" value="{{ user.researcher.names }}">
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Apellidos</label>
-                        <input type="text" class="form-control" name="surnames" id="id_surames" value="{{ user.researcher.surnames }}">
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Ocupación</label>
-                        <input type="text" class="form-control" name="occupation" id="id_ocupation" value="{{ user.researcher.occupation }}">
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Correo electrónico</label>
-                        <input type="email" class="form-control" name="email" id="id_email" value="{{ user.email }}">
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Ubicación</label>
-                        <input type="text" class="form-control" name="location" id="id_location" value="{{ user.researcher.location }}">
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Educación</label>
-                        <textarea class="form-control" name="education" id="id_education">{{ user.researcher.education }}</textarea>
-                      </div>
-
-                      <div class="col-md-12 mb-4">
-                        <label>Habilidades</label>
-                        <textarea class="form-control" name="skills" id="id_skills">{{ user.researcher.skills }}</textarea>
-                      </div>
-                      
-                      <div class="col-md-12 mb-4">
-                        <label>Notas</label>
-                        <textarea class="form-control" name="" id="id_notes">{{ user.researcher.notes }}</textarea>
-                      </div>
-
-                      <div class="col-sm-offset-2 col-md-12">
-                          <button type="submit" class="btn btn-danger">Guardar</button>
-                      </div>
-                      
-                    </form>
                   </div>
                   <!-- /.tab-pane -->
                 </div>

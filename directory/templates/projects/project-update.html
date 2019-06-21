@@ -10,54 +10,51 @@
         </div>
         <div class="modal-body">
             {% csrf_token %}
-                <label>Nombre</label>
-                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre" value="{{project.name}}">
+            <label>Nombre</label>
+            <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre" value="{{project.name}}">
 
-                <label>Descripción</label>
-                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción">{{project.description}}</textarea>
-                
-                <label>Antecedentes</label>
-                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes">{{project.background}}</textarea>
+            <label>Descripción</label>
+            <textarea id="id_description" name="description" class="form-control" placeholder="Descripción">{{project.description}}</textarea>
+            
+            <label>Antecedentes</label>
+            <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes">{{project.background}}</textarea>
 
-                <label>Responsable</label>
-                <select class="selectResp" style="width: 466px;" name="responsible" id="id_responsible">
-                    {% for item in researchers %}
-                        <option value="{{ item.id }}" 
-                        {% if item == project.responsible %} selected="selected"{% endif %}>
-                            {{ item }}
-                        </option>
-                    {% endfor %}
-                </select>
-                
-                <label>Miembros</label>
-                {% comment %} Se dejan como seleccionados los que ya pertenecen a la investigacion {% endcomment %}
-                <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members" required>
-                    {% for item in researchers %} 
-                        <option value="{{item.id}}" 
-                        {% if item in project.members.all %} selected="selected"{% endif %}> 
-                            {{item}}
-                        </option>
-                    {% endfor %}
-
-                </select> 
-            </form>
+            <label>Responsable</label>
+            <select class="selectResp form-control" name="responsible" id="id_responsible">
+                {% for item in researchers %}
+                    <option value="{{ item.id }}" 
+                    {% if item == project.responsible %} selected="selected"{% endif %}>
+                        {{ item }}
+                    </option>
+                {% endfor %}
+            </select>
+            
+            <label>Miembros</label>
+            {% comment %} Se dejan como seleccionados los que ya pertenecen a la investigacion {% endcomment %}
+            <select class="selectMembers form-control" name="members" multiple="multiple" id="id_members" required>
+                {% for item in researchers %} 
+                    <option value="{{item.id}}" 
+                    {% if item in project.members.all %} selected="selected"{% endif %}> 
+                        {{item}}
+                    </option>
+                {% endfor %}
+            </select> 
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
             <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
         </div>
+        </form>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        $('.selectMembers').select2({
-            placeholder: 'Seleccione miembro/es',
-            width: 'resolve'
+        $('.selectMembers').chosen({
+            width: '100%'
         });
-        $('.selectResp').select2({
-            placeholder: 'Seleccione responsable',
-            width: 'resolve'
+        $('.selectResp').chosen({
+            width: '100%'
         });
     });
 </script>

@@ -17,15 +17,15 @@
                 <label>Fecha</label>
                 <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" value="{{ publication.date }}">
                 
-                <label>Género</label>
-                <select class="selectGen" style="width: 466px;" name="genre" required id="genres" value="{{ publication.genre }}">
+                <label>Tipo</label>
+                <select class="selectGen form-control" style="width: 466px;" name="genre" required id="genres" value="{{ publication.genre }}">
                     {% for item in genres %}
                         <option value="{{item.id}}">{{item}}</option>
                     {% endfor %}
                 </select>
 
                 <label>Investigación</label>
-                <select class="selectInv" style="width: 466px;" name="project" required id="projects" >
+                <select class="selectInv form-control" style="width: 466px;" name="project" required id="projects" >
                     {% for item in projects %}
                         <option value="{{ item.id }}" {% if publication.project == item %} selected {% endif %}>
                             {{ item }}
@@ -34,7 +34,7 @@
                 </select>
                 
                 <label>Autores</label>
-                <select class="selectAuthors" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
+                <select class="selectAuthors form-control" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
                     {% for item in researchers %}
                         <option value="{{ item.id }}" {% if item in publication.authors.all %} selected {% endif %}>
                             {{ item }} 
@@ -42,28 +42,25 @@
                     {% endfor %}
                 </select> 
                     
-                <div class="modal-footer pb-0">
-                    <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
-                    <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
-                </div>
-            </form>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        $('.selectAuthors').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectAuthors").chosen({
+            width: "100%"
         });
-        $('.selectInv').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectGen").chosen({
+            width: "100%"
         });
-        $('.selectGen').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectInv").chosen({
+            width: "100%"
         });
     });
 </script>

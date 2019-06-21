@@ -2,6 +2,7 @@
 {% load static %}
 {% block csspage %}
     <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
 {% endblock csspage %}
 {% block title %} {{ project.name }} {% endblock title %}
 {% block content %}
@@ -48,12 +49,12 @@
                     {% endif %}   
                 </div>
 
-                 <div class="row">
+                <div class="row">
                     <h1>Miembros</h1>
                     {% if members %}
                         <ul>
                         {% for item in members %}
-                            <li>{{ item }}</li>
+                            <li><a href="{% url 'Profile' username=item.user.username %}"> {{ item }} </a></li>
                         {% endfor %}
                         </ul>
                     {% else %}
@@ -62,47 +63,29 @@
                         </span>
                     {% endif %}   
                 </div>
+
+                
             </div>
         </div>
-        <!-- solo el usuario responsable de la investigacion puede modificar sus datos o borrar la investigacion -->
-        {% if user.researcher.id == project.responsible.id %}
-            <button type="button" onclick="return abrir_modal('{% url 'project_update' pk=project.id %}')" class="btn btn-primary ml-2">
-            <i class="nav-icon far fa-edit mr-2"></i>
-            Editar
-            </button>
-            <button type="button" onclick="return abrir_modal('{% url 'project_delete' pk=project.id %}')" class="btn btn-danger ml-2">
-            <i class="nav-icon far fa-trash-alt mr-2"></i>
-            Eliminar
-            </button>
-        {% endif %}
-        
-    </div>
-
-    <div id="popup" class="modal fade" role="dialog">
-
+        <div class="row">
+            <!-- solo el usuario responsable de la investigacion puede modificar sus datos o borrar la investigacion -->
+            {% if user.researcher.id == project.responsible.id %}
+                <button type="button" onclick="return abrir_modal('{% url 'project_update' pk=project.id %}')" class="btn btn-primary ml-2">
+                <i class="nav-icon far fa-edit mr-2"></i>
+                Editar
+                </button>
+                <button type="button" onclick="return abrir_modal('{% url 'project_delete' pk=project.id %}')" class="btn btn-danger ml-2">
+                <i class="nav-icon far fa-trash-alt mr-2"></i>
+                Eliminar
+                </button>
+            {% endif %}
+        </div>
     </div>
 {% endblock content %}
 
 {% block jspage %}
-    <!-- Select2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-
-    <script>
-        function abrir_modal(url)
-        {
-            $('#popup').load(url, function()
-            {
-                $(this).modal('show');
-            });
-            return false;
-        }
-
-        function cerrar_modal()
-        {
-            $('#popup').modal('hide');
-            return false;
-        }
-    </script>
-
+    <!-- Chosen -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
+    <script src="http://labo.tristan-jahier.fr/chosen_order/chosen.order.jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css">
 {% endblock jspage %}

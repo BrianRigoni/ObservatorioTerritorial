@@ -75,10 +75,10 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
         authors = request.POST.getlist('authors')
 
         if form.is_valid():
-            name     = form.cleaned_data.get('name')
-            date     = form.cleaned_data.get('date')
-            genre    = form.cleaned_data.get('genre')
-            project  = form.cleaned_data.get('project')
+            name    = form.cleaned_data.get('name')
+            date    = form.cleaned_data.get('date')
+            genre   = form.cleaned_data.get('genre')
+            project = form.cleaned_data.get('project')
 
             publication          = Publication.objects.get(pk=pk)
             publication.name     = name

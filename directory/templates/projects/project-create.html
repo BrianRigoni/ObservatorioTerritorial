@@ -21,37 +21,35 @@
                 <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes"></textarea>
 
                 <label>Responsable</label>
-                <select class="selectResp" style="width: 466px;" name="responsible" id="id_responsible">
+                <select class="selectResp" name="responsible" id="id_responsible">
                     {% for item in researchers %}
                         <option value="{{ item.id }}">{{ item }}</option>
                     {% endfor %}
                 </select>
                 
                 <label>Miembros</label>
-                <select class="selectMembers" style="width: 466px;" name="members" multiple="multiple" id="id_members" required>
+                <select class="selectMembers" name="members" multiple="multiple" id="id_members" required>
                     {% for item in researchers %}
                         <option value="{{ item.id }}"> {{ item }} </option>
                     {% endfor %}
                 </select> 
                     
-                <div class="modal-footer pb-0">
-                    <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
-                    <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
-                </div>
-            </form>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        $('.selectMembers').select2({
-            placeholder: 'Seleccione miembro/es',
-            width: 'resolve'
+        $('.selectMembers').chosen({
+            width: '100%'
         });
-        $('.selectResp').select2({
-            placeholder: 'Seleccione responsable',
-            width: 'resolve'
+        $('.selectResp').chosen({
+            width: '100%'
         });
     });
 </script>

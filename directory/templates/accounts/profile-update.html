@@ -1,0 +1,59 @@
+<!-- Modal -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="{% url 'profile_update' pk=researcher.id %}" method="post" enctype="multipart/form-data">
+        
+        <div class="modal-header mt-1">
+            <h4 class="modal-title">Datos Personales</h4>
+            <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+                <label>Nombres</label>
+                <input class="form-control" type="text" name="names" id="id_names" value="{{ researcher.names }}">
+
+                <label>Apellidos</label>
+                <input class="form-control" type="text" name="surnames" id="id_surames" value="{{ researcher.surnames }}">
+
+                <label>Institución/es</label>
+                <select class="selectInst form-control" name="institution" id="id_institution">
+                    {% for item in institutions %}
+                        <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Ocupación</label>
+                <input class="form-control" type="text" name="occupation" id="id_ocupation" value="{{ researcher.occupation }}">
+
+                <label>Correo electrónico</label>
+                <input class="form-control" type="email" name="email" id="id_email" value="{{ researcher.user.email }}">
+
+                <label>Ubicación</label>
+                <input class="form-control" type="text" name="location" id="id_location" value="{{ researcher.location }}">
+
+                <label>Educación</label>
+                <textarea class="form-control" name="education" id="id_education">{{ researcher.education }}</textarea>
+
+                <label>Habilidades</label>
+                <textarea class="form-control" name="skills" id="id_skills">{{ researcher.skills }}</textarea>
+                
+                <label>Notas</label>
+                <textarea class="form-control" name="notes" id="id_notes">{{ researcher.notes }}</textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" id="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".selectInst").chosen({
+            width: "100%"
+        });
+    });
+</script>

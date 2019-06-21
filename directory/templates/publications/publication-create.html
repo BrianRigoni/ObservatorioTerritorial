@@ -17,22 +17,22 @@
                 <label>Fecha</label>
                 <input class="form-control" type="date" name="date" maxlength="100" required id="id_date">
                 
-                <label>Género</label>
-                <select class="selectGen" style="width: 466px;" name="genre" required id="genres">
+                <label>Tipo</label>
+                <select class="selectGen form-control" name="genre" required id="genres">
                     {% for item in genres %}
                         <option value="{{item.id}}">{{item}}</option>
                     {% endfor %}
                 </select>
 
                 <label>Investigación</label>
-                <select class="selectInv" style="width: 466px;" name="project" required id="projects">
+                <select class="selectInv form-control" name="project" required id="projects">
                     {% for item in projects %}
                         <option value="{{item.id}}">{{item}}</option>
                     {% endfor %}
                 </select>
                 
                 <label>Autores</label>
-                <select class="selectAuthors" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
+                <select class="selectAuthors form-control" name="authors" multiple="multiple" required id="id_authors">
                     {% for item in researchers %}
                         <option value="{{item.id}}"> {{ item }} </option>
                     {% endfor %}
@@ -40,28 +40,54 @@
                     
                 <input type="file" name="document" required id="id_document" placeholder="Documento">
                     
-                <div class="modal-footer pb-0">
-                    <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
-                    <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
-                </div>
-            </form>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" id="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        $('.selectAuthors').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectAuthors").chosen({
+            width: "100%"
         });
-        $('.selectInv').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectGen").chosen({
+            width: "100%"
         });
-        $('.selectGen').select2({
-            placeholder: 'Seleccione autor/es',
-            width: 'resolve'
+        $(".selectInv").chosen({
+            width: "100%"
         });
     });
+</script>
+<script>
+    $("#submit").on("click", function(e) {
+
+    // evitamos que se envíe el formulario
+    e.preventDefault();
+
+    // obtenemos los parámetros y los ordenamos
+    var serializedForm = $("form").serializeArray();
+    var orderedValues = ChosenOrder.getSelectionOrder( $(".selectAuthors") );
+    
+    console.log("ANTES DE ORDENAR SE ENVIARÍA:");
+    console.log(JSON.stringify(serializedForm));
+    
+    // reordenamos el formulario serializado para que se ajuste al ordenado
+    var x = 0;
+    var y = 0;
+    while (x < serializedForm.length) {
+        if (serializedForm[x].name == "Productos[]") {
+        serializedForm[x].value = orderedValues[y];
+        y++;
+        }
+        x++;
+    }
+    
+    console.log("DESPUÉS DE ORDENAR SE ENVÍA:");
+    console.log(JSON.stringify(serializedForm));
+
+    // enviamos el formulario usando AJAX
 </script>

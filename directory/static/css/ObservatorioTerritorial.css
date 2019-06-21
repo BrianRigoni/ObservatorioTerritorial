@@ -176,6 +176,36 @@ tbody > tr > td a.fas:hover {
 tbody > tr > td a.fas {
     color: rgb(33, 37, 41);
 }
+div.modal-body label {
+    width: 100%;
+}
+div.chosen-container > a.chosen-single, div.chosen-container > ul.chosen-choices {
+    padding: 6px 12px;
+    height: calc(1.5em + .75rem + 2px);
+    border-radius: 5px;
+    background: none;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+    color: #495057;
+    font-family: inherit;
+    font-size: 14px;
+}
+div.chosen-container > a.chosen-single div {
+    padding: 5px 0px;
+}
+div.chosen-container > ul.chosen-choices li.search-choice {
+    margin: 0px 5px 0px 0px;
+}
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+    margin: none !important;
+    height: 21px !important;
+}
+#publications_wrapper > div:nth-child(2){
+    overflow-x: scroll;
+}
+table#publications {
+    width: 100% !important;
+}
 /*
  *   Lockscreen Page
  *  -----------------
