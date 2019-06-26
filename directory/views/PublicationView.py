@@ -42,13 +42,12 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
             created_by    = form.cleaned_data.get('created_by')
 
             publication = Publication.objects.create(name=name, date=date, genre=genre, document=document, project=project, created_by=created_by)
-
             i = 1
             for author in authors:
                 researcher = Researcher.objects.get(pk=author)
                 publication.authors.add(researcher, through_defaults={'order': i})
                 i += 1
-            
+
             return redirect('publication_list')
         else:
             form = PublicationForm()
@@ -93,7 +92,7 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
                 researcher = Researcher.objects.get(pk=author)
                 publication.authors.add(researcher, through_defaults={'order': i})
                 i += 1
-            
+
             publication.save()
             return redirect('publication_list')
         else:

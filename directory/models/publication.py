@@ -11,7 +11,7 @@ class Publication(models.Model):
     document = models.FileField(upload_to='publicaciones')
     authors  = models.ManyToManyField(Researcher, through='Author', related_name='publicationAuthor')
     project  = models.ForeignKey(Project, on_delete=models.DO_NOTHING, related_name='publicationProject')
-    created_by = models.ForeignKey(User, null=False, on_delete=models.DO_NOTHING)
+    created_by = models.ForeignKey(User, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name        = "Publicación"
