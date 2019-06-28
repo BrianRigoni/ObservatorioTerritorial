@@ -21,11 +21,11 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
     form_class = PublicationForm
     success_url = reverse_lazy('publication_list')
 
-    def get(self, request, user):
+    def get(self, request):
         researchers     = Researcher.objects.all()
         genres          = Genre.objects.all()
         all_projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
-        researcher      = Researcher.objects.get(user=user)
+        researcher      = Researcher.objects.get(user=request.user.id)
         projects = [project for project in all_projects if researcher in project.members.all()]
         context_dict = {'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
@@ -62,17 +62,17 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
     form_class = PublicationUpdateForm
     success_url = reverse_lazy('publication_list')
 
-    def get(self, request, pk, user):
+    def get(self, request, pk):
         researchers     = Researcher.objects.all()
         publication     = Publication.objects.get(pk=pk)
         genres          = Genre.objects.all()
         all_projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
-        researcher      = Researcher.objects.get(user=user)
+        researcher      = Researcher.objects.get(user=request.user.id)
         projects        = [project for project in all_projects if researcher in project.members.all() ]
         context_dict    = {'publication': publication, 'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
 
-    def post(self, request, pk, user):
+    def post(self, request, pk):
         form    = PublicationUpdateForm(request.POST, request.FILES)
         authors = request.POST.getlist('authors')
         if form.is_valid():

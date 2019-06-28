@@ -9,7 +9,7 @@
 {% endblock csspage %}
 
 {% block content %}
-    <button type="button" onclick="return abrir_modal('{% url 'publication_create' user=user.id %}')" class="btn btn-primary ml-2">
+    <button type="button" onclick="return abrir_modal('{% url 'publication_create' %}')" class="btn btn-primary ml-2">
         <i class="nav-icon far fa-plus-square mr-2"></i>
         Nueva
     </button>
@@ -44,7 +44,7 @@
                         <td class="d-flex text-center">
                         {% if  user == item.created_by %}
                             <div class="col-6">
-                                <a class="fas fa-edit" onclick="return abrir_modal('{% url 'publication_update' pk=item.id user=user.id %}')"></a>
+                                <a class="fas fa-edit" onclick="return abrir_modal('{% url 'publication_update' pk=item.id %}')"></a>
                             </div>
                             <div class="col-6">
                                 <a class="fas fa-trash-alt" onclick="return abrir_modal('{% url 'publication_delete' pk=item.id %}')"></a>
