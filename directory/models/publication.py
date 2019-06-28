@@ -4,6 +4,7 @@ from .project import Project
 from .researcher import Researcher
 from django.contrib.auth.models import User
 
+
 class Publication(models.Model):
     name     = models.CharField(max_length=100, null=False, blank=False)
     date     = models.CharField(max_length=100, null=False, blank=False)
@@ -19,3 +20,8 @@ class Publication(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    def delete(self, *args, **kwargs):
+        self.document.delete()
+        super().delete(*args, **kwargs)
