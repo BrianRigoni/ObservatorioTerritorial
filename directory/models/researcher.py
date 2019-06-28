@@ -21,5 +21,11 @@ class Researcher(models.Model):
     def __str__(self):
         return f"{self.surnames}, {self.names}"
 
+    def save(self, *args, **kwargs):
+        if self.profile_picture:
+            this = Researcher.objects.get(id=self.id)
+            if this.profile_picture != self.profile_picture:
+                this.profile_picture.delete()
+        super(Researcher, self).save(*args, **kwargs)
 
 

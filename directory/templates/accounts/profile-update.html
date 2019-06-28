@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <!-- Modal -->
 <div class="modal-dialog">
     <div class="modal-content">
@@ -11,6 +12,14 @@
         </div>
         <div class="modal-body">
             {% csrf_token %}
+                <label>Foto de perfil</label>
+
+                {% thumbnail researcher.profile_picture "200x200" crop="center" as im %}
+                    <img src="/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="profile-user-img img-fluid" alt="Image profile" style="width: auto;">
+                {% endthumbnail %}
+                
+                <input class="form-control" type="file" name="profile_picture" id="id_profile_picture" style="padding: 0.6%;">
+                
                 <label>Nombres</label>
                 <input class="form-control" type="text" name="names" id="id_names" value="{{ researcher.names }}">
 

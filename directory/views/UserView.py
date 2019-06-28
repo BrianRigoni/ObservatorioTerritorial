@@ -108,20 +108,21 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
         return render(request, self.template_name, context=context_dict)
 
     def post(self, request, pk):
-        form = ProfileUpdateForm(request.POST)
+        form = ProfileUpdateForm(request.POST, request.FILES)
 
         if form.is_valid():
             researcher  = Researcher.objects.get(pk=pk)
 
-            researcher.names       = form.cleaned_data.get('names')
-            researcher.surnames    = form.cleaned_data.get('surnames')
-            researcher.institution = form.cleaned_data.get('institution')
-            researcher.occupation  = form.cleaned_data.get('occupation')
-            researcher.user.email  = form.cleaned_data.get('email')
-            researcher.location    = form.cleaned_data.get('location')
-            researcher.education   = form.cleaned_data.get('education')
-            researcher.skills      = form.cleaned_data.get('skills')
-            researcher.notes       = form.cleaned_data.get('notes')
+            researcher.profile_picture = form.cleaned_data.get('profile_picture')
+            researcher.names           = form.cleaned_data.get('names')
+            researcher.surnames        = form.cleaned_data.get('surnames')
+            researcher.institution     = form.cleaned_data.get('institution')
+            researcher.occupation      = form.cleaned_data.get('occupation')
+            researcher.user.email      = form.cleaned_data.get('email')
+            researcher.location        = form.cleaned_data.get('location')
+            researcher.education       = form.cleaned_data.get('education')
+            researcher.skills          = form.cleaned_data.get('skills')
+            researcher.notes           = form.cleaned_data.get('notes')
 
             researcher.save()
             return redirect('Home')
