@@ -235,7 +235,14 @@ table#publications {
 .background-beagle {
     background: url("../assets/beagle-channel-ushuaia.jpg") no-repeat;
     background-size: auto;
+} 
+
+@media(max-height: 769px) { 
+    .background-beagle {
+        background-size: 134%;
+    }
 }
+
 /*
  *   Login and Register Page
  *  -------------------------
