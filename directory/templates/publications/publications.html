@@ -44,7 +44,7 @@
                         <td class="d-flex text-center">
                         {% if  user == item.created_by %}
                             <div class="col-6">
-                                <a class="fas fa-edit" onclick="return abrir_modal('{% url 'publication_update' pk=item.id %}')"></a>
+                                <a class="fas fa-edit" onclick="return abrir_modal('{% url 'publication_update' pk=item.id user=user.id %}')"></a>
                             </div>
                             <div class="col-6">
                                 <a class="fas fa-trash-alt" onclick="return abrir_modal('{% url 'publication_delete' pk=item.id %}')"></a>

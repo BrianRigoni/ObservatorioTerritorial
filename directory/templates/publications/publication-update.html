@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal-dialog">
     <div class="modal-content">
-        <form role="form" action="{% url 'publication_update' pk=publication.id %}" method="post" enctype="multipart/form-data">
+        <form role="form" action="{% url 'publication_update' pk=publication.id user=user.id %}" method="post" enctype="multipart/form-data">
         
         <div class="modal-header mt-1">
             <h4 class="modal-title">Modificar publicación</h4>
@@ -11,6 +11,10 @@
         </div>
         <div class="modal-body">
             {% csrf_token %}
+
+                <!-- id del usuario que crea la publicacion-->
+                <input type="hidden" value="{{ user.id }}" name="created_by" id="id_created_by"/>
+                
                 <label>Nombre</label>
                 <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ publication.name }}">
 
@@ -40,7 +44,9 @@
                             {{ item }} 
                         </option>
                     {% endfor %}
-                </select> 
+                </select>
+
+        <input hidden="id_document" name="document" value="{{project.document}}">
                     
         </div>
         <div class="modal-footer">
