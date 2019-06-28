@@ -40,11 +40,10 @@ class SignInView(FormView):
 
         if self.request.session.test_cookie_worked():
             self.request.session.delete_test_cookie()
-            print("Cookies habilitadas!")
             """ response.set_cookie('username', user.username) """
         
         login(self.request, user) 
-        self.request.session.set_expiry(300)
+        self.request.session.set_expiry(604800)
         return super(SignInView, self).form_valid(form)
 
     """ def render_to_response(self, context, **response_kwargs):
@@ -80,7 +79,7 @@ class SignUpView(CreateView):
 
             return redirect('Home')
         else:
-            return self.form_invalid(form)
+            return render(request, self.template_name, context={'form':form})
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
