@@ -28,6 +28,6 @@ urlpatterns = [
     
     path('publicaciones/',                    PublicationList.as_view(),   name="publication_list"),
     path('nueva-publicacion/<int:user>/',     PublicationCreate.as_view(), name="publication_create"),
-    path('modificar-publicacion/<int:pk>/<int:user>/',   PublicationUpdate.as_view(), name="publication_update"),
     path('eliminar-publicacion/<int:pk>/',    PublicationDelete.as_view(), name="publication_delete"),
+    path('modificar-publicacion/<int:pk>/<int:user>/', PublicationUpdate.as_view(), name="publication_update"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
