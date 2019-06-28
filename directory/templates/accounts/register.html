@@ -27,6 +27,7 @@
             <i class="input-group-text fa fa-fw fa-user"></i>
           </div>
           <input id="id_username" name="username" type="text" class="form-control" placeholder="Nombre de usuario">
+          <br/>
         </div>
 
         <div class="input-group">
@@ -63,11 +64,18 @@
           </div>
           <input id="id_password2" name="password2" type="password" class="form-control" placeholder="Confirmar contraseña">
         </div>
-        <ul>
+        {% if form.errors %} 
           {% for field in form %}
-            {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <p class="label label-danger text-center p-1 rounded-sm">
+                {{ error }}
+                </p>
+              {% endfor %}
+            {% endif %}
           {% endfor %}
-        </ul>
+        {% endif %}
+
         
         <div class="row">
           <div class="col-md-8">
