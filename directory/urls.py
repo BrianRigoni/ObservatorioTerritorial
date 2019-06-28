@@ -27,7 +27,7 @@ urlpatterns = [
     path('investigacionespdf/<int:pk>',       ProjectDownload.as_view(),   name="Project-Info-Download"),
     
     path('publicaciones/',                    PublicationList.as_view(),   name="publication_list"),
-    path('nueva-publicacion/',                PublicationCreate.as_view(), name="publication_create"),
+    path('nueva-publicacion/<int:user>/',     PublicationCreate.as_view(), name="publication_create"),
     path('modificar-publicacion/<int:pk>/',   PublicationUpdate.as_view(), name="publication_update"),
     path('eliminar-publicacion/<int:pk>/',    PublicationDelete.as_view(), name="publication_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

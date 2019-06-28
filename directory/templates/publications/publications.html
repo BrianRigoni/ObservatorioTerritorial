@@ -9,7 +9,7 @@
 {% endblock csspage %}
 
 {% block content %}
-    <button type="button" onclick="return abrir_modal('{% url 'publication_create' %}')" class="btn btn-primary ml-2">
+    <button type="button" onclick="return abrir_modal('{% url 'publication_create' user=user.id %}')" class="btn btn-primary ml-2">
         <i class="nav-icon far fa-plus-square mr-2"></i>
         Nueva
     </button>

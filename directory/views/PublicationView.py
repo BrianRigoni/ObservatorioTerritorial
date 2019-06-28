@@ -21,11 +21,12 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
     form_class = PublicationForm
     success_url = reverse_lazy('publication_list')
 
-    def get(self, request, *args, **kwargs):
-        researchers = Researcher.objects.all()
-        genres      = Genre.objects.all()
-        projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
-
+    def get(self, request, user):
+        researchers     = Researcher.objects.all()
+        genres          = Genre.objects.all()
+        all_projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
+        researcher      = Researcher.objects.get(user=user)
+        projects = [project for project in all_projects if researcher in project.members.all()]
         context_dict = {'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
 
@@ -62,24 +63,23 @@ class PublicationUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('publication_list')
 
     def get(self, request, pk):
-        publication = Publication.objects.get(pk=pk)
         researchers = Researcher.objects.all()
+        publication = Publication.objects.get(pk=pk)
         genres      = Genre.objects.all()
-        projects    = Project.objects.all()
-        context_dict = {'publication':publication, 'researchers': researchers, 'genres': genres, 'projects': projects}
+        projects    = Project.objects.all() # luego filtrar solo por las que participa el usuario
+        context_dict = {'publication': publication, 'researchers': researchers, 'genres': genres, 'projects': projects}
         return render(request, self.template_name, context=context_dict)
 
     def post(self, request, pk):
         form    = PublicationUpdateForm(request.POST, request.FILES)
         authors = request.POST.getlist('authors')
-
         if form.is_valid():
             name          = form.cleaned_data.get('name')
             date          = form.cleaned_data.get('date')
             genre         = form.cleaned_data.get('genre')
             project       = form.cleaned_data.get('project')
-            created_by    = User.objects.get(pk=form.cleaned_data.get('created_by'))
-            publication             = Publication.objects.get(pk=pk)
+            created_by    = form.cleaned_data.get('created_by')
+            publication   = Publication.objects.get(pk=pk)
             publication.name        = name
             publication.date        = date
             publication.genre       = genre
