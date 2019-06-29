@@ -24,7 +24,7 @@ class Researcher(models.Model):
     def save(self, *args, **kwargs):
         if self.profile_picture:
             this = Researcher.objects.get(id=self.id)
-            if this.profile_picture != self.profile_picture:
+            if (this.profile_picture != self.profile_picture) and (this.profile_picture.name != "default.jpeg"):
                 this.profile_picture.delete()
         super(Researcher, self).save(*args, **kwargs)
 

@@ -22,14 +22,14 @@
                 <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" value="{{ publication.date }}">
                 
                 <label>Tipo</label>
-                <select class="selectGen form-control" style="width: 466px;" name="genre" required id="genres" value="{{ publication.genre }}">
+                <select class="selectGen form-control" name="genre" required id="genres" value="{{ publication.genre }}">
                     {% for item in genres %}
                         <option value="{{item.id}}">{{item}}</option>
                     {% endfor %}
                 </select>
 
                 <label>Investigación</label>
-                <select class="selectInv form-control" style="width: 466px;" name="project" required id="projects" >
+                <select class="selectInv form-control" name="project" required id="projects" >
                     {% for item in projects %}
                         <option value="{{ item.id }}" {% if publication.project == item %} selected {% endif %}>
                             {{ item }}
@@ -38,7 +38,7 @@
                 </select>
                 
                 <label>Autores</label>
-                <select class="selectAuthors form-control" style="width: 466px;" name="authors" multiple="multiple" required id="id_authors">
+                <select class="selectAuthors form-control" name="authors" multiple="multiple" required id="id_authors">
                     {% for item in researchers %}
                         <option value="{{ item.id }}" {% if item in publication.authors.all %} selected {% endif %}>
                             {{ item }} 

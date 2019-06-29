@@ -233,14 +233,9 @@ table#publications {
 }
 
 .background-beagle {
+    height: -webkit-fill-available !important;
     background: url("../assets/beagle-channel-ushuaia.jpg") no-repeat;
     background-size: auto;
-} 
-
-@media(max-height: 769px) { 
-    .background-beagle {
-        background-size: 134%;
-    }
 }
 
 /*
@@ -271,12 +266,12 @@ table#publications {
 .register-box {
     width: 360px;
     margin-top: 2%;
-}
+}/* 
 .login-box { 
     margin-bottom: auto;
-}
-.register-box {
-    margin-bottom: 4%;
+} */
+.register-box, .login-box {
+    margin-bottom: 3%;
 }
 .login-box-body, 
 .register-box-body {
@@ -295,7 +290,10 @@ table#publications {
     height: 35px;
     width: 40px;
 }
-
+input.form-control[type="file"] {
+    padding: 0.6%;
+    margin: 0;
+}
 /*
  * Page: Profile
  * -------------
