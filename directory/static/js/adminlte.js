@@ -253,7 +253,7 @@ var PushMenu = function ($) {
 
     PushMenu.prototype.toggle = function toggle() {
       var isShown = void 0;
-      var mysidebar = $(".sidebar");
+      /* var mysidebar = $(".sidebar"); */
       if ($(window).width() >= this._options.screenCollapseSize) {
         isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
       } else {
@@ -261,10 +261,10 @@ var PushMenu = function ($) {
       }
 
       if (isShown) {
-        mysidebar.height(612);
+        /* mysidebar.height(612); */
         this.collapse();
       } else {
-        mysidebar.height(542);
+        /* mysidebar.height(542); */
         this.show();
       }
     };

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Investigaciones {% endblock title %}
+
+{% block csspage %}
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+{% endblock csspage %}
+
+{% block content %}
+    <button type="button" onclick="return abrir_modal('{% url 'project_create' %}')" class="btn btn-primary ml-2">
+        <i class="nav-icon far fa-plus-square mr-2"></i>
+        Nueva
+    </button>
+
+    <div class="details-card">
+        <div class="container">
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-md-4">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <img src="https://placeimg.com/380/230/nature" alt="project-image">
+                            {% comment %} <span><h4>{{ project.name }}</h4></span> {% endcomment %}
+                        </div>
+                        <div class="card-desc">
+                            <h3>{{ project.name }}</h3>
+                            <p>{{ project.description|truncatewords_html:20 }}</p>
+                            <div class="row">
+                                <div class="col-6"><a href="{% url 'project_detail' pk=project.id %}" class="btn-card">Leer</a></div>
+                                <div class="col-6"><a class="fas fa-file-download float-right m-0" href="{% url 'Project-Info-Download' pk=project.id %}" target="_blank"></a></div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

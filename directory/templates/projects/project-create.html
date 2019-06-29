@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="{% url 'project_create' %}" method="post" enctype="multipart/form-data">
+
+        <div class="modal-header mt-1">
+            <h4 class="modal-title">Nueva investigación</h4>
+            <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+                <label>Nombre</label>
+                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
+
+                <label>Descripción</label>
+                <textarea id="id_description" name="description" class="form-control" placeholder="Descripción"></textarea>
+                
+                <label>Antecedentes</label>
+                <textarea id="id_background" name="background" class="form-control" placeholder="Antecedentes"></textarea>
+
+                <label>Responsable</label>
+                <select class="selectResp" name="responsible" id="id_responsible">
+                    {% for item in researchers %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                
+                <label>Miembros</label>
+                <select class="selectMembers" name="members" multiple="multiple" id="id_members" required>
+                    {% for item in researchers %}
+                        <option value="{{ item.id }}"> {{ item }} </option>
+                    {% endfor %}
+                </select> 
+                    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.selectMembers').chosen({
+            width: '100%'
+        });
+        $('.selectResp').chosen({
+            width: '100%'
+        });
+    });
+</script>

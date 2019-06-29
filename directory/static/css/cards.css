@@ -28,7 +28,7 @@
 	position: absolute;
     top: 15px;
     left: 15px;
-    background: #1ABC9C;
+    background: #20B7BD;
     padding: 6px;
     color: #fff;
     font-size: 12px;
@@ -70,11 +70,19 @@
 	margin: 0px;
 	margin-bottom: 20px;
     padding: 0;
-    height: 120px;
+    height: 140px;
 	font-family: 'Raleway', sans-serif;
 }
+
+.card-desc a.fas {
+    margin-left: 170px;
+    vertical-align: middle;
+    font-size: 30px;
+    color: slategrey;
+}
+
 .btn-card{
-	background-color: #1ABC9C;
+	background-color: #20B7BD;
 	color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     padding: .84rem 2.14rem;

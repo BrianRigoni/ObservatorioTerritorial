@@ -1,58 +1,97 @@
-{% extends 'base.html' %}
-{% block title %} Nueva publicacion {% endblock title %}
-{% block content %}
-
-
-    <div class="ml-5 col-md-6">
-        <h3>Nueva publicación</h3>
-        <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-            <input class="form-control row mt-2" type="text" name="name" maxlength="100" required id="id_name" placeholder="Nombre">
-
-            <input class="form-control row mt-2" type="date" name="date" maxlength="100" required id="id_date" placeholder="Fecha">
-
-            <input class="form-control row mt-2" type="text" name="genre" list="genres" required id="id_genre" placeholder="Genero">
-            <datalist id="genres">
-                {% for item in genres %}
-                    <option value="{{item.id}}">{{item}}</option>
-                {% endfor %}
-            </datalist>
-
-            <input class="form-control row mt-2" type="text" name="project" list="projects" required id="id_project" placeholder="Investigacion">
-            <datalist id="projects">
-                {% for item in projects %}
-                    <option value="{{item.id}}">{{item}}</option>
-                {% endfor %}
-            </datalist>
-            <div class="row mt-2">
-                <select class="js-example-basic-multiple col-md-6" name="states[]" multiple="multiple" id="id_authors">    
-                {% for item in researchers %}
-                    <option value="{{item.id}}"> {{ item }} </option>
-                {% endfor %}
-                </select>   
-            </div>
-            <input class="row mt-2" type="file" name="document" required id="id_document" placeholder="Documento">
-            
-            
-            <input class="row btn btn-primary mt-2" type="submit" value="Subir">
-        </form>
-
+<!-- Modal -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="{% url 'publication_create' %}" method="post" enctype="multipart/form-data">
         
+        <div class="modal-header mt-1">
+            <h4 class="modal-title">Nueva publicación</h4>
+            <button type="button" class="close mt-0 p-2 mr-0" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+                <!-- id del usuario que crea la publicacion-->
+                <input type="hidden" value="{{ user.id }}" name="created_by" id="id_created_by"/>
 
+                <label>Nombre</label>
+                <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" placeholder="Ingrese el nombre">
 
+                <label>Fecha</label>
+                <input class="form-control" type="date" name="date" maxlength="100" required id="id_date">
+                
+                <label>Tipo</label>
+                <select class="selectGen form-control" name="genre" required id="genres">
+                    {% for item in genres %}
+                        <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Investigación</label>
+                <select class="selectInv form-control" name="project" required id="projects">
+                    {% for item in projects %}
+                        <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+                </select>
+                
+                <label>Autores</label>
+                <select class="selectAuthors form-control" name="authors" multiple="multiple" required id="id_authors">
+                    {% for item in researchers %}
+                        <option value="{{item.id}}"> {{ item }} </option>
+                    {% endfor %}
+                </select> 
+                    
+                <label>Documento</label>
+                <input class="form-control" type="file" name="document" required id="id_document" placeholder="Documento">
+                    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="return cerrar_modal()">Cancelar</button>
+            <input type="submit" id="submit" name="submit" value="Guardar" class="btn btn-primary">
+        </div>
+        </form>
     </div>
-{% endblock content %}
+</div>
 
-{% block jspage %}
-{% comment %} script de select2 {% endcomment %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.js-example-basic-multiple').select2({
-        placeholder: 'Seleccione autor/es'
+        $(".selectAuthors").chosen({
+            width: "100%"
         });
-        
+        $(".selectGen").chosen({
+            width: "100%"
+        });
+        $(".selectInv").chosen({
+            width: "100%"
+        });
     });
 </script>
-{% endblock jspage %}
+<script>
+    $("#submit").on("click", function(e) {
+
+    // evitamos que se envíe el formulario
+    e.preventDefault();
+
+    // obtenemos los parámetros y los ordenamos
+    var serializedForm = $("form").serializeArray();
+    var orderedValues = ChosenOrder.getSelectionOrder( $(".selectAuthors") );
+    
+    console.log("ANTES DE ORDENAR SE ENVIARÍA:");
+    console.log(JSON.stringify(serializedForm));
+    
+    // reordenamos el formulario serializado para que se ajuste al ordenado
+    var x = 0;
+    var y = 0;
+    while (x < serializedForm.length) {
+        if (serializedForm[x].name == "Productos[]") {
+        serializedForm[x].value = orderedValues[y];
+        y++;
+        }
+        x++;
+    }
+    
+    console.log("DESPUÉS DE ORDENAR SE ENVÍA:");
+    console.log(JSON.stringify(serializedForm));
+
+    // enviamos el formulario usando AJAX
+</script>
